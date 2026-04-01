@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vistacraft Homes — Premium Residences, Lekki Lagos</title>
+<meta name="description" content="Vistacraft Homes — luxury residential developments in Lekki, Lagos. Presenting Tea's Court II, now selling."/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+/* ── FEATURED SECTION ── */
+.feat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+  max-width:1280px;margin:0 auto;
+}
+@media(max-width:900px){.feat-grid{grid-template-columns:1fr;gap:3rem}}
+.feat-img-wrap{position:relative}
+.feat-main-img{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;border-radius:2px;
+  filter:brightness(.85) saturate(.9);
+  display:block;
+}
+@media(max-width:900px){.feat-main-img{aspect-ratio:16/9}}
+.feat-badge{
+  position:absolute;bottom:-1.5rem;right:-1.5rem;
+  background:var(--royal);padding:1.35rem 1.5rem;
+  border-radius:3px;border:3px solid var(--navy);
+  box-shadow:0 8px 32px rgba(30,64,175,.35);text-align:center;
+}
+.feat-badge-big{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.9rem;font-weight:300;
+  color:var(--wh);display:block;line-height:1;
+}
+.feat-badge-sm{
+  font-size:.58rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(255,255,255,.65);
+  margin-top:.2rem;display:block;
+}
+@media(max-width:600px){
+  .feat-badge{bottom:-1rem;right:-0.5rem;padding:1rem 1.1rem}
+  .feat-badge-big{font-size:1.5rem}
+}
+
+/* ─────────────────────────────────────
+   PROJECT GRID  —  uniform card heights
+   3 cards, all the same height.
+   No spanning / no masonry on homepage.
+   Featured TC2 gets slightly more height
+   via aspect-ratio on the image only.
+───────────────────────────────────── */
+.proj-grid-home{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  max-width:1280px;margin:0 auto;
+}
+@media(max-width:820px){
+  .proj-grid-home{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+  .proj-grid-home{grid-template-columns:1fr}
+}
+
+/* Every card: fixed aspect ratio, no span, no varying heights */
+.proj-card-home{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:3/4;   /* all cards same portrait ratio */
+  background:var(--deep);
+  border-radius:2px;
+  display:block;
+}
+/* Slightly wider aspect on tablet/mobile for comfort */
+@media(max-width:820px){.proj-card-home{aspect-ratio:4/3}}
+
+.proj-card-home img,.proj-card-home video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:brightness(.72) saturate(.85);
+  transition:transform .65s cubic-bezier(.25,1,.5,1),filter .45s;
+  display:block;
+}
+.proj-card-home::before{
+  content:'';
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(10,37,64,.92) 0%,rgba(10,37,64,.1) 60%,transparent 100%);
+}
+.proj-card-home:hover img,
+.proj-card-home:hover video{
+  transform:scale(1.05);
+  filter:brightness(.85) saturate(1);
+}
+.proj-card-body-home{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.4rem 1.5rem;z-index:2;
+  transform:translateY(5px);
+  transition:transform .35s cubic-bezier(.25,1,.5,1);
+}
+.proj-card-home:hover .proj-card-body-home{transform:none}
+.proj-card-tag-home{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.6rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:.26rem .7rem;border-radius:2px;
+  margin-bottom:.6rem;
+}
+.proj-card-tag-home.active{
+  background:rgba(59,130,246,.14);
+  border:1px solid rgba(59,130,246,.28);color:#60A5FA;
+}
+.proj-card-tag-home.done{
+  background:rgba(201,168,76,.12);
+  border:1px solid rgba(201,168,76,.25);color:var(--gold);
+}
+.proj-card-tag-home .pill-dot{
+  width:5px;height:5px;border-radius:50%;background:currentColor;
+  animation:blink 1.8s ease infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.proj-card-h-home{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:400;color:var(--wh);
+  margin-bottom:.25rem;
+}
+.proj-card-loc-home{
+  font-size:.7rem;color:rgba(255,255,255,.4);letter-spacing:.08em;
+}
+
+/* ── CTA BAND ── */
+.cta-band{
+  background:linear-gradient(135deg,var(--royal) 0%,var(--royalL) 100%);
+  padding:5rem 3.5rem;text-align:center;
+}
+@media(max-width:600px){.cta-band{padding:4rem 1.5rem}}
+.cta-band h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3.2rem);font-weight:300;
+  color:var(--wh);margin-bottom:1rem;
+}
+.cta-band p{
+  color:rgba(255,255,255,.72);font-size:.92rem;
+  max-width:440px;margin:0 auto 2rem;line-height:1.75;
+}
+.cta-btn-light{
+  background:rgba(255,255,255,.18);color:var(--wh);
+  padding:.85rem 2.2rem;font-size:.75rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;border-radius:2px;
+  border:1px solid rgba(255,255,255,.35);transition:background .3s;
+}
+.cta-btn-dark{
+  background:var(--deep);color:var(--wh);
+  padding:.85rem 2.2rem;font-size:.75rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;border-radius:2px;
+  transition:background .3s;
+}
+</style>
+</head>
+<body>
+<div class="curtain"></div>
+<div id="prog"></div>
+<div id="cdot"></div>
+<div id="cring"></div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="nav">
+  <a href="index.html" class="nlogo">
+    <img src="assets/logo.png" alt="Vistacraft Homes"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="teas-court-2.html">Tea's Court II</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="ncta">Enquire</a></li>
+  </ul>
+  <button id="hbg" aria-label="Menu">
+    <span id="h1"></span><span id="h2"></span><span id="h3"></span>
+  </button>
+</nav>
+<div id="mob">
+  <a href="index.html" onclick="closeMob()">Home</a>
+  <a href="teas-court-2.html" onclick="closeMob()">Tea's Court II</a>
+  <a href="portfolio.html" onclick="closeMob()">Portfolio</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="contact.html" onclick="closeMob()">Enquire</a>
+</div>
+
+<!-- ═══ HERO — assets/tea1.mp4 ═══ -->
+<section class="hero">
+  <div class="hero-vid-wrap">
+    <div class="hero-fallback"></div>
+    <video autoplay muted loop playsinline id="heroVid">
+      <source src="assets/tea1.mp4" type="video/mp4"/>
+    </video>
+  </div>
+  <div class="hero-grid"></div>
+  <div class="hero-vig"></div>
+  <div class="hero-body">
+    <div class="hero-tag">Ikate, Lekki &nbsp;·&nbsp; Lagos, Nigeria</div>
+    <h1 class="hero-h1">Where Lagos<br><em>Dreams</em> Take<br><span class="hl">Form.</span></h1>
+    <p class="hero-sub">Introducing Tea's Court II — a new standard of refined living in Lekki. Designed for those who demand excellence in every detail.</p>
+    <div class="hero-btns">
+      <a href="teas-court-2.html" class="btn-p">Explore Tea's Court II</a>
+      <a href="about.html" class="btn-g">About Vistacraft</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scline"></div><span>Scroll</span></div>
+  <div class="hero-coords">6°26'N 3°31'E<br>Lekki, Lagos</div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<div id="stats">
+  <div class="sw">
+    <div class="stat anim-up"><span class="sn">3<span>+</span></span><span class="sl">Years of Excellence</span></div>
+    <div class="stat anim-up d1"><span class="sn">3</span><span class="sl">Premium Projects</span></div>
+    <div class="stat anim-up d2"><span class="sn">100<span>%</span></span><span class="sl">Sold Out Record</span></div>
+    <div class="stat anim-up d3"><span class="sn">Q3<span>'27</span></span><span class="sl">Completion Date</span></div>
+  </div>
+</div>
+
+<!-- ═══ MARQUEE 1 ═══ -->
+<div class="mrow"><div class="mtrack">
+  <span class="mi"><span class="md"></span>Tea's Court II</span>
+  <span class="mi"><span class="md"></span>Ikate, Lekki</span>
+  <span class="mi"><span class="md"></span>1, 2 &amp; 3 Bedroom Residences</span>
+  <span class="mi"><span class="md"></span>Rising Now — March 2026</span>
+  <span class="mi"><span class="md"></span>Rooftop Lounge — Swimming Pool — 24hr Power</span>
+  <span class="mi"><span class="md"></span>Tea's Court II</span>
+  <span class="mi"><span class="md"></span>Ikate, Lekki</span>
+  <span class="mi"><span class="md"></span>1, 2 &amp; 3 Bedroom Residences</span>
+  <span class="mi"><span class="md"></span>Rising Now — March 2026</span>
+  <span class="mi"><span class="md"></span>Rooftop Lounge — Swimming Pool — 24hr Power</span>
+  <span class="mi"><span class="md"></span>Tea's Court II</span>
+  <span class="mi"><span class="md"></span>Ikate, Lekki</span>
+</div></div>
+
+<!-- ═══ FEATURED — TC2 ═══ -->
+<section style="background:var(--navy);padding-bottom:6rem">
+  <div class="feat-grid">
+    <!-- IMAGE: assets/TC2_Front_View.jpg -->
+    <div class="feat-img-wrap anim-left">
+      <img class="feat-main-img" src="assets/TC2_Front_View.jpg" alt="Tea's Court II Front View"
+           onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1000&q=85'"/>
+      <div class="feat-badge">
+        <span class="feat-badge-big">Q3 '27</span>
+        <span class="feat-badge-sm">Expected<br>Completion</span>
+      </div>
+    </div>
+    <div class="anim-right d2">
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.6rem">
+        <span class="pill rising"><span class="pill-dot"></span>Rising Now</span>
+        <span class="pill loc"><i class="fa-solid fa-location-dot" style="font-size:.6rem;margin-right:.3rem"></i>Ikate, Lekki, Lagos</span>
+      </div>
+      <div class="stag">Prioritised Sales Project</div>
+      <h2 class="sh2">Tea's Court <em>II</em></h2>
+      <p class="slead">A new standard of refined living in the heart of Lekki — a statement of success, a sanctuary of style, and a place to truly belong.</p>
+      <p class="slead" style="margin-top:1rem">Every unit includes a private Boys' Quarters within a secure gated estate. From <strong style="color:var(--wh)">₦150M</strong>, with flexible payment plans available.</p>
+      <div style="display:flex;gap:.85rem;flex-wrap:wrap;margin-top:2rem">
+        <a href="teas-court-2.html" class="btn-p">Full Project Details</a>
+        <a href="teas-court-2.html#pricing" class="btn-g">View Pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECT GRID — 3 uniform cards ═══ -->
+<section style="background:var(--deep)">
+  <div class="mw">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:3rem">
+      <div class="anim-up">
+        <div class="stag">Track Record</div>
+        <h2 class="sh2">Delivered with<br><em>Precision</em></h2>
+      </div>
+      <a href="portfolio.html" class="btn-g anim-up d2">Full Portfolio</a>
+    </div>
+
+    <div class="proj-grid-home">
+      <!-- CARD 1: TC2 — assets/TC2_Left_View.jpg -->
+      <a href="teas-court-2.html" class="proj-card-home anim-up d1">
+        <img src="assets/TC2_Left_View.jpg" alt="Tea's Court II"
+             onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=85'"/>
+        <div class="proj-card-body-home">
+          <span class="proj-card-tag-home active"><span class="pill-dot"></span>Rising Now</span>
+          <h3 class="proj-card-h-home">Tea's Court II</h3>
+          <p class="proj-card-loc-home">Ikate, Lekki — Lagos</p>
+        </div>
+      </a>
+
+      <!-- CARD 2: TC1 — assets/TC1_Front_View.jpg -->
+      <a href="portfolio.html" class="proj-card-home anim-up d2">
+        <img src="assets/TC1_Front_View.jpg" alt="Tea's Court I"
+             onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80'"/>
+        <div class="proj-card-body-home">
+          <span class="proj-card-tag-home done">Completed — Sold Out</span>
+          <h3 class="proj-card-h-home">Tea's Court I</h3>
+          <p class="proj-card-loc-home">Lekki, Lagos</p>
+        </div>
+      </a>
+
+      <!-- CARD 3: Kucaro — assets/kucaro_1.jpg -->
+      <a href="portfolio.html" class="proj-card-home anim-up d3">
+        <img src="assets/kucaro_1.jpg" alt="Project Kucaro"
+             onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80'"/>
+        <div class="proj-card-body-home">
+          <span class="proj-card-tag-home done">Completed</span>
+          <h3 class="proj-card-h-home">Project Kucaro</h3>
+          <p class="proj-card-loc-home">Lagos, Nigeria</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE 2 ═══ -->
+<div class="mrow"><div class="mtrack rev">
+  <span class="mi"><span class="md"></span>Mastery in Every Beam</span>
+  <span class="mi"><span class="md"></span>Elevate Beyond Ordinary</span>
+  <span class="mi"><span class="md"></span>Built for Legacy</span>
+  <span class="mi"><span class="md"></span>Live Elevated — Live Exclusive</span>
+  <span class="mi"><span class="md"></span>Mastery in Every Beam</span>
+  <span class="mi"><span class="md"></span>Elevate Beyond Ordinary</span>
+  <span class="mi"><span class="md"></span>Built for Legacy</span>
+  <span class="mi"><span class="md"></span>Live Elevated — Live Exclusive</span>
+  <span class="mi"><span class="md"></span>Mastery in Every Beam</span>
+  <span class="mi"><span class="md"></span>Elevate Beyond Ordinary</span>
+</div></div>
+
+<!-- ═══ ABOUT TEASER ═══ -->
+<section style="background:var(--navy)">
+  <div class="about-grid mw">
+    <div class="about-vis anim-left">
+      <!-- IMAGE: assets/TC2_Right_View.jpg -->
+      <img class="about-main-img" src="assets/TC2_Right_View.jpg" alt="Tea's Court II Right View"
+           onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80'"/>
+      <!-- IMAGE: assets/TC1_Right_View.jpg -->
+      <img class="about-acc-img" src="assets/TC1_Right_View.jpg" alt="Tea's Court I Completed"
+           onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=500&q=80'"/>
+      <div class="about-badge">
+        <span class="ab-num">3</span>
+        <span class="ab-txt">Years<br>Leading Lekki</span>
+      </div>
+    </div>
+    <div class="anim-right d2">
+      <div class="stag">About the Developer</div>
+      <h2 class="sh2">Pioneering Lekki's<br><em>Boldest</em> Horizons</h2>
+      <p class="slead" style="margin-bottom:1rem">Vistacraft is a leading luxury real estate company redefining modern homes in the heart of Lekki, Lagos. In only three years, every single development has sold out completely.</p>
+      <p class="slead" style="margin-bottom:2rem">From concept to completion, we don't just build properties — we create homes people desire and investments people secure with confidence.</p>
+      <a href="about.html" class="btn-g">Our Full Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═══ -->
+<div class="cta-band">
+  <h2 class="anim-up">Begin Your Legacy Today</h2>
+  <p class="anim-up d1">Secure your unit in Tea's Court II — Lekki's most anticipated residential development of 2026.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap" class="anim-up d2">
+    <a href="teas-court-2.html#pricing" class="cta-btn-light">View Pricing</a>
+    <a href="contact.html" class="cta-btn-dark">Contact Us</a>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p class="fcopy">© 2026 <span>Vistacraft Homes</span> &nbsp;·&nbsp; Ikate, Lekki, Lagos &nbsp;·&nbsp; All Rights Reserved</p>
+  <p class="fdesign">Designed by <span>Jackson</span></p>
+</footer>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

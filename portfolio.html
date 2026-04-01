@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio — Vistacraft Homes</title>
+<meta name="description" content="Vistacraft Homes portfolio — Tea's Court II, Tea's Court I, Project Kucaro, Project Domus. Every project sold out."/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+/* ══════════════════════════════════════════════
+   PORTFOLIO PAGE STYLES
+   All heights, grids, and responsive rules
+   are defined here for precision control.
+══════════════════════════════════════════════ */
+
+/* ── PAGE HEADER ── */
+.port-header{
+  padding:calc(var(--nav-h) + 5rem) 3.5rem 4rem;
+  background:linear-gradient(180deg,var(--deep) 0%,var(--navy) 100%);
+  position:relative;overflow:hidden;
+}
+@media(max-width:768px){.port-header{padding:calc(var(--nav-h) + 3.5rem) 1.5rem 3rem}}
+.port-header-glow{
+  position:absolute;top:-100px;right:-100px;
+  width:480px;height:480px;
+  background:radial-gradient(circle,rgba(30,64,175,.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.port-header-inner{max-width:680px;position:relative;z-index:1}
+
+/* ── MINI STATS ── */
+.mini-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  max-width:640px;
+  margin-top:3rem;
+  border:1px solid var(--br);
+  border-radius:3px;overflow:hidden;
+}
+@media(max-width:500px){
+  .mini-stats{grid-template-columns:repeat(2,1fr)}
+}
+.mini-stat{
+  padding:1.2rem 1rem;
+  text-align:center;
+  border-right:1px solid var(--br);
+}
+.mini-stat:last-child{border-right:none}
+@media(max-width:500px){
+  .mini-stat:nth-child(2){border-right:none}
+  .mini-stat:nth-child(3){border-top:1px solid var(--br)}
+  .mini-stat:nth-child(4){border-top:1px solid var(--br);border-right:none}
+}
+.mini-stat-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:300;color:var(--wh);
+  display:block;line-height:1;
+}
+.mini-stat-n span{color:var(--sky)}
+.mini-stat-l{
+  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mt);margin-top:.3rem;display:block;
+}
+
+/* ── FILTER BAR ── */
+.filter-bar{
+  background:var(--navy);
+  padding:1.5rem 3.5rem;
+  border-bottom:1px solid var(--br);
+  display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+}
+@media(max-width:600px){.filter-bar{padding:1.2rem 1.5rem;gap:.4rem}}
+.filter-btn{
+  padding:.4rem 1.1rem;
+  font-size:.68rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  border-radius:2px;border:1px solid var(--br);
+  background:transparent;color:rgba(255,255,255,.4);
+  transition:all .3s;
+}
+.filter-btn.active,.filter-btn:hover{
+  background:rgba(59,130,246,.12);border-color:var(--sky);color:var(--sky);
+}
+
+/* ══════════════════════════════════════════════
+   PROJECT BLOCK  — one per project
+   Mobile: single column
+   Desktop: two column (info + gallery)
+══════════════════════════════════════════════ */
+.proj-block{
+  padding:5rem 3.5rem;
+  border-bottom:1px solid var(--br);
+}
+.proj-block:last-of-type{border-bottom:none}
+@media(max-width:768px){.proj-block{padding:4rem 1.5rem}}
+
+/* ── INFO + SPECS HEADER ── */
+.proj-hdr{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:3rem;
+  align-items:start;
+  max-width:1280px;
+  margin:0 auto 2.5rem;
+}
+@media(max-width:820px){
+  .proj-hdr{
+    grid-template-columns:1fr;
+    gap:2rem;
+    margin-bottom:2rem;
+  }
+}
+
+.proj-badge{
+  font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  padding:.26rem .75rem;border-radius:2px;
+  display:inline-flex;align-items:center;gap:.4rem;
+  margin-bottom:1rem;
+}
+.proj-badge.active-p{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.28);color:#60A5FA}
+.proj-badge.done-p{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);color:var(--gold)}
+.proj-badge .pill-dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:blink 1.8s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.proj-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4.5vw,3.4rem);
+  font-weight:300;line-height:1.1;
+  color:var(--wh);margin-bottom:.75rem;
+}
+.proj-title em{font-style:italic;color:var(--sky)}
+.proj-desc{font-size:.87rem;color:var(--mt);line-height:1.8;max-width:520px}
+
+/* Specs table */
+.specs-box{
+  border:1px solid var(--br);border-radius:3px;
+  overflow:hidden;background:rgba(255,255,255,.02);
+  align-self:start;
+}
+.spec-r{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:.75rem;
+  padding:.78rem 1.1rem;
+  border-bottom:1px solid var(--br);font-size:.8rem;
+}
+.spec-r:last-child{border-bottom:none}
+.spec-k{color:var(--mt);flex-shrink:0;white-space:nowrap}
+.spec-v{color:var(--wh);text-align:right;word-break:break-word}
+.spec-v.hi{color:var(--sky);font-family:'Cormorant Garamond',serif;font-size:1.05rem}
+.spec-v.go{color:var(--gold)}
+
+/* ── COMPLETED NOTE ── */
+.done-note{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.9rem 1.1rem;
+  background:rgba(74,222,128,.06);
+  border:1px solid rgba(74,222,128,.18);
+  border-radius:3px;margin-top:1.2rem;
+}
+.done-note i{color:#4ADE80;flex-shrink:0;margin-top:.1rem}
+.done-note p{font-size:.76rem;color:rgba(255,255,255,.6);line-height:1.5}
+
+/* ══════════════════════════════════════════════
+   MEDIA GALLERY GRID
+   ─────────────────────────────────────────────
+   THE ROOT FIX: consistent heights across all
+   projects. No g-item.tall with fixed px heights.
+   Instead: define a JS-matched aspect-ratio.
+   
+   Layout system:
+   • Desktop (≥900px): 3-column masonry-style
+   • Tablet (≥540px):  2-column equal
+   • Mobile (<540px):  1-column full-width
+   
+   "Tall" tiles use grid-row:span 2 which
+   only works when sibling tiles fill the
+   adjacent grid rows. Using padding-bottom
+   trick for aspect-ratio is more reliable.
+══════════════════════════════════════════════ */
+
+/* Gallery wrapper */
+.gal{
+  max-width:1280px;
+  margin:0 auto;
+  /* Use CSS columns for true masonry across all screen sizes */
+  column-count:3;
+  column-gap:6px;
+}
+@media(max-width:900px){.gal{column-count:2}}
+@media(max-width:520px){.gal{column-count:1}}
+
+/* Individual gallery item */
+.gi{
+  position:relative;
+  overflow:hidden;
+  background:var(--deep);
+  break-inside:avoid;    /* don't split across columns */
+  margin-bottom:6px;
+  border-radius:2px;
+  display:block;         /* block for column-count */
+}
+
+/* Image inside gallery item — aspect-ratio driven */
+.gi img,.gi video{
+  display:block;
+  width:100%;
+  height:auto;           /* natural image height — no fixed height needed */
+  object-fit:cover;
+  filter:brightness(.78) saturate(.85);
+  transition:transform .6s cubic-bezier(.25,1,.5,1),filter .42s;
+}
+/* Force consistent heights using aspect-ratio */
+.gi.sq  img,.gi.sq  video{aspect-ratio:1/1}      /* square */
+.gi.land img,.gi.land video{aspect-ratio:4/3}    /* landscape */
+.gi.port img,.gi.port video{aspect-ratio:3/4}    /* portrait / tall */
+.gi.wide img,.gi.wide video{aspect-ratio:16/9}   /* widescreen (video) */
+
+/* Hover effects */
+.gi:hover img,.gi:hover video{
+  transform:scale(1.045);
+  filter:brightness(.92) saturate(1.05);
+}
+
+/* Overlay on hover */
+.gi-ov{
+  position:absolute;inset:0;
+  background:rgba(10,37,64,0);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .35s;
+  z-index:1;pointer-events:none;
+}
+.gi:hover .gi-ov{background:rgba(10,37,64,.4)}
+.gi-ov-icon{
+  width:44px;height:44px;
+  border:1px solid rgba(255,255,255,.6);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--wh);font-size:.88rem;
+  opacity:0;transform:scale(.65);
+  transition:opacity .3s,transform .3s;
+}
+.gi:hover .gi-ov-icon{opacity:1;transform:scale(1)}
+
+/* Caption bar reveals on hover */
+.gi-cap{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:.85rem 1rem;z-index:2;
+  background:linear-gradient(to top,rgba(10,37,64,.88),transparent);
+  transform:translateY(100%);
+  transition:transform .35s cubic-bezier(.25,1,.5,1);
+  pointer-events:none;
+}
+.gi:hover .gi-cap{transform:none}
+.gi-cap-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.98rem;font-weight:400;color:var(--wh);
+}
+.gi-cap-sub{
+  font-size:.64rem;color:rgba(255,255,255,.48);
+  letter-spacing:.08em;margin-top:.14rem;
+}
+
+/* ── Gallery count line ── */
+.gal-footer{
+  max-width:1280px;margin:.9rem auto 0;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.gal-count{
+  font-size:.7rem;letter-spacing:.1em;color:var(--mt);
+  display:flex;align-items:center;gap:.45rem;
+}
+.gal-count i{color:var(--sky)}
+
+/* ── Stagger animation for gallery items ── */
+/* Applied via JS after DOM ready */
+.gi.anim-in{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .55s cubic-bezier(.25,1,.5,1),
+             transform .55s cubic-bezier(.25,1,.5,1);
+}
+.gi.anim-in.visible{opacity:1;transform:none}
+
+/* ══════════════════════════════════════════════
+   KUCARO VIDEO SECTION
+   Full-width autoplay video block, same
+   presentation quality as TC2 video.
+══════════════════════════════════════════════ */
+.vid-block{
+  position:relative;
+  max-width:1280px;margin:0 auto;
+  border-radius:2px;overflow:hidden;
+  background:var(--deep);
+}
+.vid-block video{
+  display:block;width:100%;
+  aspect-ratio:16/9;object-fit:cover;
+}
+/* poster image — shows while video loads */
+.vid-block-poster{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  z-index:0;
+}
+.vid-block video{position:relative;z-index:1}
+.vid-block-label{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:1.4rem 1.8rem;
+  background:linear-gradient(to top,rgba(10,37,64,.82),transparent);
+  font-size:.74rem;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.6);
+  display:flex;align-items:center;gap:.6rem;
+}
+@media(max-width:600px){
+  .vid-block-label{padding:1rem 1.25rem;font-size:.66rem}
+}
+
+/* ══════════════════════════════════════════════
+   INSTAGRAM EMBED  (Kucaro reel)
+══════════════════════════════════════════════ */
+.ig-wrap{
+  border:1px solid var(--br);border-radius:3px;
+  background:var(--deep);overflow:hidden;
+  max-width:400px;                /* natural embed width */
+  width:100%;
+}
+@media(max-width:820px){.ig-wrap{max-width:100%}}
+.ig-wrap blockquote{
+  margin:0!important;border:none!important;
+  background:transparent!important;
+  width:100%!important;
+}
+.ig-fallback{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;min-height:260px;gap:1rem;
+  text-align:center;padding:2rem;
+}
+.ig-fallback i{font-size:2rem;color:var(--sky)}
+.ig-fallback p{font-size:.82rem;color:var(--mt);max-width:200px;line-height:1.6}
+.ig-fallback a{
+  font-size:.73rem;font-weight:500;color:var(--sky);
+  border:1px solid rgba(59,130,246,.35);
+  padding:.45rem 1.1rem;border-radius:2px;transition:background .25s;
+}
+.ig-fallback a:hover{background:rgba(59,130,246,.1)}
+
+/* Kucaro layout: reel embed beside gallery */
+.kucaro-layout{
+  display:grid;
+  grid-template-columns:400px 1fr;
+  gap:2rem;
+  align-items:start;
+  max-width:1280px;margin:0 auto;
+}
+@media(max-width:900px){
+  .kucaro-layout{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════════════ */
+#lbx{
+  display:none;position:fixed;inset:0;
+  background:rgba(4,12,28,.97);
+  z-index:8000;align-items:center;justify-content:center;
+}
+#lbx.open{display:flex}
+body.lbx-open{overflow:hidden}
+
+.lbx-inner{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:100%;padding:1.5rem;
+}
+.lbx-img-wrap{
+  position:relative;
+  max-width:1100px;max-height:88vh;
+  display:flex;align-items:center;justify-content:center;
+}
+#lbx-img{
+  max-width:100%;max-height:82vh;
+  object-fit:contain;border-radius:2px;display:block;
+  animation:lbxIn .25s cubic-bezier(.25,1,.5,1);
+}
+@keyframes lbxIn{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:none}}
+
+.lbx-caption{
+  position:absolute;bottom:-3rem;left:0;right:0;text-align:center;
+}
+.lbx-cap-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:rgba(255,255,255,.78)}
+.lbx-cap-count{font-size:.68rem;letter-spacing:.15em;color:rgba(255,255,255,.3);margin-top:.3rem}
+
+.lbx-close{
+  position:fixed;top:1.5rem;right:1.5rem;
+  width:42px;height:42px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.65);font-size:1.1rem;z-index:9;
+  transition:background .2s,color .2s;
+}
+.lbx-close:hover{background:rgba(255,255,255,.14);color:var(--wh)}
+
+.lbx-arrow{
+  position:fixed;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.65);font-size:.95rem;z-index:9;
+  transition:background .2s,color .2s;user-select:none;
+}
+.lbx-arrow:hover{background:rgba(255,255,255,.13);color:var(--wh)}
+.lbx-prev{left:1.5rem}.lbx-next{right:1.5rem}
+@media(max-width:600px){
+  .lbx-prev{left:.75rem}.lbx-next{right:.75rem}
+  .lbx-arrow{width:36px;height:36px;font-size:.82rem}
+}
+</style>
+</head>
+<body>
+<div class="curtain"></div>
+<div id="prog"></div>
+<div id="cdot"></div>
+<div id="cring"></div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="nav">
+  <a href="index.html" class="nlogo">
+    <img src="assets/logo.png" alt="Vistacraft Homes"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="teas-court-2.html">Tea's Court II</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="ncta">Enquire</a></li>
+  </ul>
+  <button id="hbg" aria-label="Menu">
+    <span id="h1"></span><span id="h2"></span><span id="h3"></span>
+  </button>
+</nav>
+<div id="mob">
+  <a href="index.html" onclick="closeMob()">Home</a>
+  <a href="teas-court-2.html" onclick="closeMob()">Tea's Court II</a>
+  <a href="portfolio.html" onclick="closeMob()">Portfolio</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="contact.html" onclick="closeMob()">Enquire</a>
+</div>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<div class="port-header">
+  <div class="port-header-glow"></div>
+  <div class="port-header-inner">
+    <div class="stag anim-up">Our Work</div>
+    <h1 class="sh2 anim-up d1" style="font-size:clamp(2.4rem,5vw,4.2rem)">
+      Every Project,<br><em>Sold Out.</em>
+    </h1>
+    <p class="slead anim-up d2">
+      From Tea's Court II currently rising, to completed developments across Lagos — a growing portfolio defined by quality, trust, and demand.
+    </p>
+    <div class="mini-stats anim-up d3">
+      <div class="mini-stat">
+        <span class="mini-stat-n">3<span>+</span></span>
+        <span class="mini-stat-l">Years</span>
+      </div>
+      <div class="mini-stat">
+        <span class="mini-stat-n">4</span>
+        <span class="mini-stat-l">Projects</span>
+      </div>
+      <div class="mini-stat">
+        <span class="mini-stat-n">100<span>%</span></span>
+        <span class="mini-stat-l">Sold Out</span>
+      </div>
+      <div class="mini-stat">
+        <span class="mini-stat-n">3</span>
+        <span class="mini-stat-l">Completed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FILTER BAR ═══ -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All Projects</button>
+  <button class="filter-btn" data-filter="active">Active</button>
+  <button class="filter-btn" data-filter="completed">Completed</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PROJECT 01 — TEA'S COURT II  (ACTIVE)
+     Images: TC2_Front_View.jpg, TC2_Left_View.jpg, TC2_Right_View.jpg
+     Video:  Teas_Court_2_3D_Completion.mp4
+══════════════════════════════════════════════ -->
+<div class="proj-block" style="background:var(--navy)" data-project="active">
+
+  <div class="proj-hdr">
+    <div class="anim-up">
+      <span class="proj-badge active-p">
+        <span class="pill-dot"></span>Rising Now — Active Sales
+      </span>
+      <div class="stag">Project 01</div>
+      <h2 class="proj-title">Tea's Court <em>II</em></h2>
+      <p class="proj-desc" style="margin-bottom:1.2rem">
+        A state-of-the-art residential development in Ikate, Lekki — 1, 2 &amp; 3 bedroom apartments with BQ. Rooftop lounge, swimming pool, two elevators, and 24-hour power.
+      </p>
+      <a href="teas-court-2.html" class="btn-p" style="display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;padding:.75rem 1.6rem">
+        <i class="fa-solid fa-arrow-right"></i> Full Project Details
+      </a>
+    </div>
+    <div class="specs-box anim-up d2">
+      <div class="spec-r"><span class="spec-k">Location</span><span class="spec-v">Ikate, Lekki, Lagos</span></div>
+      <div class="spec-r"><span class="spec-k">Type</span><span class="spec-v">1, 2 &amp; 3 Bed + BQ</span></div>
+      <div class="spec-r"><span class="spec-k">Start</span><span class="spec-v">March 2026</span></div>
+      <div class="spec-r"><span class="spec-k">Completion</span><span class="spec-v" style="color:var(--sky)">Q3 2027</span></div>
+      <div class="spec-r"><span class="spec-k">From</span><span class="spec-v hi">₦150,000,000</span></div>
+    </div>
+  </div>
+
+  <!-- TC2 IMAGE GALLERY — 3 images, portrait layout for consistency with TC1 -->
+  <!-- FILES: TC2_Front_View.jpg | TC2_Left_View.jpg | TC2_Right_View.jpg -->
+  <div class="gal" id="gal-tc2">
+    <div class="gi port anim-in" data-g="tc2" data-i="0">
+      <img src="assets/TC2_Front_View.jpg" alt="Tea's Court II — Front View"
+           onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Tea's Court II</div><div class="gi-cap-sub">Front View</div></div>
+    </div>
+    <div class="gi sq anim-in" data-g="tc2" data-i="1">
+      <img src="assets/TC2_Left_View.jpg" alt="Tea's Court II — Left View"
+           onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Tea's Court II</div><div class="gi-cap-sub">Left View</div></div>
+    </div>
+    <div class="gi sq anim-in" data-g="tc2" data-i="2">
+      <img src="assets/TC2_Right_View.jpg" alt="Tea's Court II — Right View"
+           onerror="this.src='https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Tea's Court II</div><div class="gi-cap-sub">Right View</div></div>
+    </div>
+  </div>
+
+  <!-- TC2 VIDEO — assets/Teas_Court_2_3D_Completion.mp4 -->
+  <div class="vid-block anim-in" style="margin-top:6px;max-width:1280px">
+    <!-- poster shows while video loads / if video unavailable -->
+    <img class="vid-block-poster" src="assets/TC2_Front_View.jpg" alt="TC2"
+         onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1400&q=85'"/>
+    <video autoplay muted loop playsinline poster="assets/TC2_Front_View.jpg">
+      <source src="assets/Teas_Court_2_3D_Completion.mp4" type="video/mp4"/>
+    </video>
+    <div class="vid-block-label">
+      <i class="fa-solid fa-play" style="color:var(--sky)"></i>
+      Tea's Court II — 3D Completion Showcase
+    </div>
+  </div>
+
+  <div class="gal-footer anim-up d3">
+    <span class="gal-count"><i class="fa-solid fa-images"></i>3 images + 3D video</span>
+    <a href="teas-court-2.html" class="btn-g" style="font-size:.7rem;padding:.52rem 1.3rem">View Full Details</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PROJECT 02 — TEA'S COURT I  (COMPLETED)
+     Video:  Teas_Court_1_Completion.mp4
+     Images: TC1_Front_View.jpg, TC1_Left_View.jpg, TC1_Right_View.jpg
+══════════════════════════════════════════════ -->
+<div class="proj-block" style="background:var(--deep)" data-project="completed">
+
+  <div class="proj-hdr">
+    <div class="anim-up">
+      <span class="proj-badge done-p">Completed &amp; Sold Out</span>
+      <div class="stag">Project 02</div>
+      <h2 class="proj-title">Tea's Court <em>I</em></h2>
+      <p class="proj-desc" style="margin-bottom:1rem">
+        Vistacraft's debut residential development — 12 units of well-appointed 2-bedroom apartments across four floors in Lekki, Lagos. Completely sold out within months of launch.
+      </p>
+      <p class="proj-desc" style="margin-bottom:1.2rem">
+        Features a swimming pool, water treatment system, reliable power backup, and ample parking. Every aspect elegantly executed with strict adherence to construction standards.
+      </p>
+      <div class="done-note">
+        <i class="fa-solid fa-circle-check"></i>
+        <p>Completed &amp; fully handed over — a reflection of the quality, trust, and demand that defines Vistacraft.</p>
+      </div>
+    </div>
+    <div class="specs-box anim-up d2">
+      <div class="spec-r"><span class="spec-k">Location</span><span class="spec-v">Lekki, Lagos</span></div>
+      <div class="spec-r"><span class="spec-k">Type</span><span class="spec-v">2-Bedroom Apartments</span></div>
+      <div class="spec-r"><span class="spec-k">Units</span><span class="spec-v">12 Units — 4 Floors</span></div>
+      <div class="spec-r"><span class="spec-k">Amenities</span><span class="spec-v">Pool, Power, Parking</span></div>
+      <div class="spec-r"><span class="spec-k">Status</span><span class="spec-v go">Completed &amp; Sold Out</span></div>
+    </div>
+  </div>
+
+  <!-- TC1 GALLERY — same column count and aspect ratios as TC2 -->
+  <!-- FILES: TC1_Front_View.jpg | TC1_Left_View.jpg | TC1_Right_View.jpg -->
+  <div class="gal" id="gal-tc1">
+    <div class="gi port anim-in" data-g="tc1" data-i="0">
+      <img src="assets/TC1_Front_View.jpg" alt="Tea's Court I — Front View"
+           onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Tea's Court I</div><div class="gi-cap-sub">Front View</div></div>
+    </div>
+    <div class="gi sq anim-in" data-g="tc1" data-i="1">
+      <img src="assets/TC1_Left_View.jpg" alt="Tea's Court I — Left View"
+           onerror="this.src='https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Tea's Court I</div><div class="gi-cap-sub">Left View</div></div>
+    </div>
+    <div class="gi sq anim-in" data-g="tc1" data-i="2">
+      <img src="assets/TC1_Right_View.jpg" alt="Tea's Court I — Right View"
+           onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Tea's Court I</div><div class="gi-cap-sub">Right View</div></div>
+    </div>
+  </div>
+
+  <!-- TC1 COMPLETION VIDEO — assets/Teas_Court_1_Completion.mp4 -->
+  <div class="vid-block anim-in" style="margin-top:6px;max-width:1280px">
+    <img class="vid-block-poster" src="assets/TC1_Front_View.jpg" alt="TC1"
+         onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&q=85'"/>
+    <video autoplay muted loop playsinline poster="assets/TC1_Front_View.jpg">
+      <source src="public/assets/Teas_Court_1_Completion.MP4" type="video/mp4"/>
+    </video>
+    <div class="vid-block-label">
+      <i class="fa-solid fa-play" style="color:var(--sky)"></i>
+      Tea's Court I — Completion Showcase
+    </div>
+  </div>
+
+  <div class="gal-footer anim-up d3">
+    <span class="gal-count"><i class="fa-solid fa-images"></i>3 images + completion video</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PROJECT 03 — PROJECT KUCARO  (COMPLETED)
+     Video:  assets/kucaro_video.mp4  (autoplay, same as TC2)
+     Images: assets/kucaro_1.jpg … kucaro_5.jpg
+     Instagram reel: https://www.instagram.com/reels/DG5_Gt2Ix4z/
+     NOTE: Instagram reel = PUBLIC REFERENCE ONLY.
+           For production, use the saved kucaro_video.mp4 file.
+══════════════════════════════════════════════ -->
+<div class="proj-block" style="background:var(--navy)" data-project="completed">
+
+  <div class="proj-hdr">
+    <div class="anim-up">
+      <span class="proj-badge done-p">Completed</span>
+      <div class="stag">Project 03</div>
+      <h2 class="proj-title">Project <em>Kucaro</em></h2>
+      <p class="proj-desc" style="margin-bottom:1rem">
+        An exclusive single-family residence designed for space, comfort, and refined living — a perfect blend of modern architecture, functional design, and premium finishing.
+      </p>
+      <p class="proj-desc">
+        The property features 5 spacious en-suite bedrooms, complemented by 2 Boys' Quarters (BQ) for staff or extended family needs.
+      </p>
+    </div>
+    <div class="specs-box anim-up d2">
+      <div class="spec-r"><span class="spec-k">Type</span><span class="spec-v">Single-Family</span></div>
+      <div class="spec-r"><span class="spec-k">Bedrooms</span><span class="spec-v">5 En-suite + 2 BQ</span></div>
+      <div class="spec-r"><span class="spec-k">Status</span><span class="spec-v go">Completed</span></div>
+      <div class="spec-r">
+        <span class="spec-k">Reel</span>
+        <span class="spec-v">
+          <a href="https://www.instagram.com/reels/DG5_Gt2Ix4z/" target="_blank" rel="noopener"
+             style="color:var(--sky);display:flex;align-items:center;gap:.35rem;justify-content:flex-end">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KUCARO VIDEO — assets/kucaro_video.mp4
+       Autoplay (muted, loop, playsinline) — same behaviour as TC2 3D video.
+       NOT a 3D render; just an autoplay site video for the project. -->
+  <div class="vid-block anim-in" style="max-width:1280px;margin:0 auto 6px">
+    <img class="vid-block-poster" src="assets/kucaro_1.jpg" alt="Project Kucaro"
+         onerror="this.src='https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1400&q=85'"/>
+    <video autoplay muted loop playsinline poster="assets/kucaro_1.jpg">
+      <source src="public/assets/ProjectKucaro.mp4" type="video/mp4"/>
+    </video>
+    <div class="vid-block-label">
+      <i class="fa-solid fa-video" style="color:var(--sky)"></i>
+      Project Kucaro — Site Showcase
+    </div>
+  </div>
+
+  <!-- KUCARO 5-IMAGE GALLERY -->
+  <!-- FILES: kucaro_1.jpg through kucaro_5.jpg -->
+  <div class="gal" id="gal-kucaro">
+    <div class="gi land anim-in" data-g="kucaro" data-i="0">
+      <img src="assets/kucaro_1.jpg" alt="Project Kucaro — 1"
+           onerror="this.src='https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Kucaro</div></div>
+    </div>
+    <div class="gi sq anim-in" data-g="kucaro" data-i="1">
+      <img src="assets/kucaro_2.jpg" alt="Project Kucaro — 2"
+           onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Kucaro</div></div>
+    </div>
+    <div class="gi sq anim-in" data-g="kucaro" data-i="2">
+      <img src="assets/kucaro_3.jpg" alt="Project Kucaro — 3"
+           onerror="this.src='https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Kucaro</div></div>
+    </div>
+    <div class="gi sq anim-in" data-g="kucaro" data-i="3">
+      <img src="assets/kucaro_4.jpg" alt="Project Kucaro — 4"
+           onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Kucaro</div></div>
+    </div>
+    <div class="gi land anim-in" data-g="kucaro" data-i="4">
+      <img src="assets/kucaro_5.jpg" alt="Project Kucaro — 5"
+           onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Kucaro</div></div>
+    </div>
+  </div>
+
+  <div class="gal-footer anim-up d2">
+    <span class="gal-count"><i class="fa-solid fa-images"></i>5 images + site video</span>
+    <a href="https://www.instagram.com/reels/DG5_Gt2Ix4z/" target="_blank" rel="noopener"
+       class="btn-g" style="font-size:.7rem;padding:.52rem 1.3rem;display:inline-flex;align-items:center;gap:.5rem">
+      <i class="fa-brands fa-instagram"></i> View Reel
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PROJECT 04 — PROJECT DOMUS  (COMPLETED)
+     5 images: assets/Domus 1.jpg … Domus 5.jpg
+     Gallery is expandable — add more .gi items
+     as more images become available.
+══════════════════════════════════════════════ -->
+<div class="proj-block" style="background:var(--deep)" data-project="completed">
+
+  <div class="proj-hdr">
+    <div class="anim-up">
+      <span class="proj-badge done-p">Completed</span>
+      <div class="stag">Project 04</div>
+      <h2 class="proj-title">Project <em>Domus</em></h2>
+      <p class="proj-desc" style="margin-bottom:1rem">
+        An exclusive semi-detached residential development — two units of 5-bedroom residences, each spanning three floors. Spacious living areas, fully fitted contemporary kitchen, private cinema, and in-house elevators.
+      </p>
+      <p class="proj-desc">
+        Thoughtfully designed to deliver a perfect balance of luxury, comfort, and functionality — tailored for modern family living.
+      </p>
+    </div>
+    <div class="specs-box anim-up d2">
+      <div class="spec-r"><span class="spec-k">Type</span><span class="spec-v">Semi-Detached</span></div>
+      <div class="spec-r"><span class="spec-k">Units</span><span class="spec-v">2 Units — 5 Beds Each</span></div>
+      <div class="spec-r"><span class="spec-k">Floors</span><span class="spec-v">3 Floors + Elevator</span></div>
+      <div class="spec-r"><span class="spec-k">Features</span><span class="spec-v">Cinema, Lift, Kitchen</span></div>
+      <div class="spec-r"><span class="spec-k">Status</span><span class="spec-v go">Completed</span></div>
+    </div>
+  </div>
+
+  <!-- DOMUS GALLERY — 5 images, elegant masonry
+       FILE NAMES: "Domus 1.jpg" through "Domus 5.jpg"
+       (URL encode spaces in src: assets/Domus%201.jpg)
+       Layout: mix of portrait, square, and landscape for variety.
+       To add more: simply add another .gi div below.
+       The CSS column layout will reflow automatically. -->
+  <div class="gal" id="gal-domus">
+    <!-- Domus 1 — portrait for impact -->
+    <div class="gi port anim-in" data-g="domus" data-i="0">
+      <img src="public/assets/domus1.jpg" alt="Project Domus — 1"
+           onerror="this.src='https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Domus</div><div class="gi-cap-sub">Exterior</div></div>
+    </div>
+    <!-- Domus 2 -->
+    <div class="gi sq anim-in" data-g="domus" data-i="1">
+      <img src="public/assets/domus2.jpg" alt="Project Domus — 2"
+           onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Domus</div></div>
+    </div>
+    <!-- Domus 3 -->
+    <div class="gi sq anim-in" data-g="domus" data-i="2">
+      <img src="public/assets/domus3.jpg" alt="Project Domus — 3"
+           onerror="this.src='https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Domus</div></div>
+    </div>
+    <!-- Domus 4 -->
+    <div class="gi land anim-in" data-g="domus" data-i="3">
+      <img src="public/assets/domus4.jpg" alt="Project Domus — 4"
+           onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Domus</div></div>
+    </div>
+    <!-- Domus 5 -->
+    <div class="gi land anim-in" data-g="domus" data-i="4">
+      <img src="public/assets/domus5.jpg" alt="Project Domus — 5"
+           onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80'"/>
+      <div class="gi-ov"><div class="gi-ov-icon"><i class="fa-solid fa-expand"></i></div></div>
+      <div class="gi-cap"><div class="gi-cap-title">Project Domus</div></div>
+    </div>
+    <!-- ─ ADD MORE DOMUS IMAGES HERE ─
+         Copy and paste the block above.
+         Update src="assets/Domus%206.jpg", alt, data-i.
+         The masonry column layout will reflow automatically.
+    ───────────────────────────────── -->
+  </div>
+
+  <div class="gal-footer anim-up d3">
+    <span class="gal-count"><i class="fa-solid fa-images"></i>5 images</span>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div style="background:linear-gradient(135deg,var(--royal) 0%,var(--royalL) 100%);padding:5rem 3.5rem;text-align:center">
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:var(--wh);margin-bottom:.75rem" class="anim-up">
+    Secure Your Unit in Tea's Court II
+  </h2>
+  <p style="color:rgba(255,255,255,.72);font-size:.88rem;max-width:400px;margin:0 auto 2rem;line-height:1.7" class="anim-up d1">
+    The only active Vistacraft project currently selling. Limited units available.
+  </p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap" class="anim-up d2">
+    <a href="teas-court-2.html" style="background:rgba(255,255,255,.15);color:var(--wh);padding:.82rem 2rem;font-size:.74rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;border-radius:2px;border:1px solid rgba(255,255,255,.3);transition:background .3s">View Project</a>
+    <a href="contact.html" style="background:var(--deep);color:var(--wh);padding:.82rem 2rem;font-size:.74rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;border-radius:2px;transition:background .3s">Enquire Now</a>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p class="fcopy">© 2026 <span>Vistacraft Homes</span> &nbsp;·&nbsp; Ikate, Lekki, Lagos &nbsp;·&nbsp; All Rights Reserved</p>
+  <p class="fdesign">Designed by <span>Jackson</span></p>
+</footer>
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div id="lbx" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lbx-inner" id="lbxInner">
+    <button class="lbx-close" id="lbxClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lbx-arrow lbx-prev" id="lbxPrev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lbx-arrow lbx-next" id="lbxNext" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="lbx-img-wrap">
+      <img id="lbx-img" src="" alt=""/>
+      <div class="lbx-caption">
+        <div class="lbx-cap-title" id="lbxTitle"></div>
+        <div class="lbx-cap-count" id="lbxCount"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Instagram embed (for Kucaro reel fallback) -->
+<script async src="//www.instagram.com/embed.js"></script>
+
+<script>
+/* ══════════════════════════════════════
+   FILTER BAR
+══════════════════════════════════════ */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.proj-block').forEach(block => {
+      block.style.display = (f === 'all' || block.dataset.project === f) ? '' : 'none';
+    });
+  });
+});
+
+/* ══════════════════════════════════════
+   GALLERY STAGGER ANIMATION
+   Adds increasing transition-delay to
+   each .gi.anim-in within a gallery
+══════════════════════════════════════ */
+document.querySelectorAll('.gal').forEach(gal => {
+  const items = gal.querySelectorAll('.gi.anim-in');
+  items.forEach((item, i) => {
+    item.style.transitionDelay = (i * 0.08) + 's';
+  });
+});
+
+/* ══════════════════════════════════════
+   INTERSECTION OBSERVER
+   Triggers .anim-in → .visible on all
+   gallery items and .anim-up elements
+══════════════════════════════════════ */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.gi.anim-in, .anim-up').forEach(el => io.observe(el));
+
+/* ══════════════════════════════════════
+   LIGHTBOX ENGINE
+══════════════════════════════════════ */
+const LB = {
+  groups: {},
+  cur: { g: null, i: 0 },
+
+  build() {
+    document.querySelectorAll('[data-g]').forEach(tile => {
+      const g = tile.dataset.g;
+      const i = parseInt(tile.dataset.i);
+      if (!this.groups[g]) this.groups[g] = [];
+      const img = tile.querySelector('img');
+      const cap = tile.querySelector('.gi-cap-title');
+      const sub = tile.querySelector('.gi-cap-sub');
+      this.groups[g][i] = {
+        src: img ? img.src : '',
+        title: (cap ? cap.textContent : '') + (sub ? ' — ' + sub.textContent : ''),
+        i, total: 0
+      };
+    });
+    Object.keys(this.groups).forEach(g => {
+      this.groups[g].forEach(item => { if(item) item.total = this.groups[g].length; });
+    });
+  },
+
+  open(g, i) {
+    this.cur = { g, i };
+    this.render();
+    document.getElementById('lbx').classList.add('open');
+    document.body.classList.add('lbx-open');
+  },
+
+  close() {
+    document.getElementById('lbx').classList.remove('open');
+    document.body.classList.remove('lbx-open');
+  },
+
+  render() {
+    const { g, i } = this.cur;
+    const items = this.groups[g];
+    if (!items || !items[i]) return;
+    const item = items[i];
+    const el = document.getElementById('lbx-img');
+    el.src = item.src;
+    /* restart CSS animation */
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = '';
+    document.getElementById('lbxTitle').textContent = item.title;
+    document.getElementById('lbxCount').textContent = `${i + 1} / ${item.total}`;
+    document.getElementById('lbxPrev').style.opacity = i > 0 ? '1' : '0.3';
+    document.getElementById('lbxNext').style.opacity = i < item.total - 1 ? '1' : '0.3';
+  },
+
+  prev() { if (this.cur.i > 0) { this.cur.i--; this.render(); } },
+  next() {
+    const t = this.groups[this.cur.g];
+    if (this.cur.i < t.length - 1) { this.cur.i++; this.render(); }
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  LB.build();
+  /* Wire click on every gallery tile */
+  document.querySelectorAll('[data-g]').forEach(tile => {
+    tile.addEventListener('click', () => {
+      LB.open(tile.dataset.g, parseInt(tile.dataset.i));
+    });
+  });
+});
+
+/* Controls */
+document.getElementById('lbxClose').addEventListener('click', () => LB.close());
+document.getElementById('lbxPrev').addEventListener('click', e => { e.stopPropagation(); LB.prev(); });
+document.getElementById('lbxNext').addEventListener('click', e => { e.stopPropagation(); LB.next(); });
+document.getElementById('lbxInner').addEventListener('click', e => {
+  if (e.target === document.getElementById('lbxInner')) LB.close();
+});
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lbx').classList.contains('open')) return;
+  if (e.key === 'Escape')     LB.close();
+  if (e.key === 'ArrowLeft')  LB.prev();
+  if (e.key === 'ArrowRight') LB.next();
+});
+/* Touch swipe */
+let tx = 0;
+document.getElementById('lbx').addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+document.getElementById('lbx').addEventListener('touchend', e => {
+  const dx = tx - e.changedTouches[0].clientX;
+  if (Math.abs(dx) > 50) dx > 0 ? LB.next() : LB.prev();
+});
+</script>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

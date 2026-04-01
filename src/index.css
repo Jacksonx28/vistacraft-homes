@@ -1,0 +1,17 @@
+theme: {
+  extend: {
+    fontFamily: {
+      serif: ['Cormorant Garamond', 'serif'],
+      sans: ['DM Sans', 'sans-serif'],
+    },
+    colors: {
+      navy: {
+        900: '#0a1128', // Example deep navy
+        800: '#1c2541',
+      },
+      royal: {
+        DEFAULT: '#1f4068', // Example accent blue
+      }
+    }
+  },
+}

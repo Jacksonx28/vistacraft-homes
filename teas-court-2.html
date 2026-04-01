@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tea's Court II — Vistacraft Homes | Ikate, Lekki Lagos</title>
+<meta name="description" content="Tea's Court II by Vistacraft Homes — 1, 2 & 3 bedroom premium residences in Ikate, Lekki. From ₦150M. Rising now, completion Q3 2027."/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.tc2-hero{
+  position:relative;
+  width:100%;height:80vh;min-height:460px;
+  overflow:hidden;display:flex;align-items:flex-end;
+}
+@media(max-width:768px){
+  .tc2-hero{height:65vh;min-height:380px}
+}
+@media(max-width:480px){
+  .tc2-hero{height:55vh;min-height:320px}
+}
+.tc2-hero-img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:brightness(.42) saturate(.85);
+}
+.tc2-hero-vig{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    160deg,
+    rgba(10,37,64,.9) 0%,
+    rgba(10,37,64,.55) 50%,
+    rgba(10,37,64,.2) 100%
+  );
+}
+.tc2-hero-vig::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:50%;
+  background:linear-gradient(to top,var(--deep) 0%,transparent 100%);
+}
+.tc2-hero-body{
+  position:relative;z-index:2;
+  padding:3.5rem;max-width:720px;
+}
+@media(max-width:768px){.tc2-hero-body{padding:2rem 1.5rem 2.5rem}}
+.tc2-hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem,6vw,5rem);
+  font-weight:300;line-height:1.05;
+  color:var(--wh);margin-bottom:.5rem;
+}
+.tc2-hero-title em{font-style:italic;color:var(--sky)}
+.tc2-hero-meta{
+  font-size:.8rem;color:rgba(255,255,255,.48);
+  font-weight:300;margin-top:.5rem;
+}
+.tc2-hero-pills{
+  display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem;
+}
+.tc2-hero-btns{
+  display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.8rem;
+}
+.tc2-hero-btns .btn-p,
+.tc2-hero-btns .btn-g{
+  font-size:.72rem;padding:.75rem 1.7rem;
+}
+
+/* ══════════════════════════════════════
+   OVERVIEW GRID  — stacks at 900px
+══════════════════════════════════════ */
+.ov-grid{
+  display:grid;
+  grid-template-columns:1.15fr 1fr;
+  gap:4rem;
+  align-items:start;
+  max-width:1280px;
+  margin:0 auto;
+}
+@media(max-width:900px){
+  .ov-grid{
+    grid-template-columns:1fr;
+    gap:2.5rem;
+  }
+}
+
+/* ── Snapshot card ── */
+.snap-card{
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--br);
+  border-radius:4px;overflow:hidden;
+}
+.snap-card-hdr{
+  padding:1rem 1.4rem;
+  border-bottom:1px solid var(--br);
+  font-size:.6rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--sky);
+}
+/*
+  KEY FIX: use a two-column grid inside each row
+  so key and value never run together.
+  On very small screens they stack.
+*/
+.snap-row{
+  display:grid;
+  grid-template-columns:min-content 1fr;
+  align-items:baseline;
+  column-gap:1rem;row-gap:0;
+  padding:.88rem 1.4rem;
+  border-bottom:1px solid var(--br);
+}
+.snap-row:last-child{border-bottom:none}
+.snap-key{
+  font-size:.75rem;color:var(--mt);
+  white-space:nowrap;
+}
+.snap-val{
+  font-size:.84rem;color:var(--wh);
+  text-align:right;word-break:break-word;
+}
+.snap-val.accent{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;color:var(--sky);
+}
+@media(max-width:420px){
+  .snap-row{
+    grid-template-columns:1fr;
+    gap:.18rem;
+    padding:.75rem 1.2rem;
+  }
+  .snap-val{text-align:left;font-size:.82rem}
+}
+
+/* ══════════════════════════════════════
+   TC2 IMAGE GALLERY
+   Desktop: 2-col grid (large | 2 stacked)
+   Tablet:  2-col equal
+   Mobile:  1-col stack
+   Heights match TC1 exactly in portfolio.
+══════════════════════════════════════ */
+.tc2-gallery{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  grid-template-rows:280px 280px;
+  gap:6px;
+  max-width:1280px;
+  margin:0 auto;
+}
+.tc2-gal-main{
+  grid-row:1 / 3;   /* spans both rows = 280+6+280 = 566px */
+}
+@media(max-width:760px){
+  /* 2-col equal, each row auto height */
+  .tc2-gallery{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto;
+  }
+  .tc2-gal-main{grid-row:span 1}
+}
+@media(max-width:480px){
+  /* single column on small phones */
+  .tc2-gallery{
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+  }
+  .tc2-gal-main{grid-row:span 1}
+}
+
+.tc2-gal-item{
+  position:relative;
+  overflow:hidden;
+  background:var(--deep);
+}
+.tc2-gal-item img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  filter:brightness(.82) saturate(.9);
+  transition:transform .65s cubic-bezier(.25,1,.5,1),filter .4s;
+}
+.tc2-gal-item:hover img{
+  transform:scale(1.04);
+  filter:brightness(.95) saturate(1);
+}
+/* Fixed heights for desktop gallery tiles */
+.tc2-gallery .tc2-gal-item:not(.tc2-gal-main){height:280px}
+.tc2-gal-main{height:100%}  /* fills the 2-row span */
+@media(max-width:760px){
+  .tc2-gallery .tc2-gal-item,
+  .tc2-gallery .tc2-gal-item:not(.tc2-gal-main){
+    height:240px;
+  }
+}
+@media(max-width:480px){
+  .tc2-gallery .tc2-gal-item,
+  .tc2-gallery .tc2-gal-item:not(.tc2-gal-main){
+    height:260px;
+  }
+}
+
+/* ══════════════════════════════════════
+   VIDEO SHOWCASE
+══════════════════════════════════════ */
+.vid-wrap{
+  position:relative;
+  width:100%;aspect-ratio:16/9;
+  border-radius:3px;overflow:hidden;
+  background:var(--deep);
+  max-width:1280px;margin:0 auto;
+}
+.vid-wrap video{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+/* Poster = image shown while video loads/fails */
+.vid-wrap-poster{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  z-index:0;
+}
+.vid-wrap video{position:relative;z-index:1}
+.vid-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.4rem 2rem;
+  background:linear-gradient(to top,rgba(10,37,64,.8),transparent);
+  font-size:.74rem;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.6);
+  display:flex;align-items:center;gap:.6rem;z-index:2;
+}
+@media(max-width:600px){.vid-label{padding:1rem 1.25rem;font-size:.66rem}}
+
+/* ══════════════════════════════════════
+   AMENITIES
+══════════════════════════════════════ */
+.amen-grid-tc2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.85rem;margin-top:2rem;
+}
+@media(max-width:600px){.amen-grid-tc2{grid-template-columns:1fr;gap:.7rem}}
+
+.amen-row{
+  display:flex;align-items:flex-start;
+  gap:.85rem;padding:.9rem 1rem;
+  border:1px solid var(--br);border-radius:3px;
+  background:rgba(255,255,255,.02);
+  transition:border-color .3s,background .3s;
+}
+.amen-row:hover{
+  border-color:rgba(59,130,246,.28);
+  background:rgba(59,130,246,.04);
+}
+.amen-row i{
+  color:var(--sky);font-size:.84rem;
+  flex-shrink:0;margin-top:.15rem;width:16px;text-align:center;
+}
+.amen-row span{font-size:.78rem;color:rgba(255,255,255,.72);line-height:1.45}
+
+/* ══════════════════════════════════════
+   PRICING
+══════════════════════════════════════ */
+.price-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--br);
+  max-width:1100px;margin:0 auto;
+}
+@media(max-width:820px){
+  .price-grid{grid-template-columns:1fr}
+}
+.price-col{
+  padding:2.2rem 1.8rem;
+  background:rgba(255,255,255,.02);
+  border-right:1px solid var(--br);
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.price-col:last-child{border-right:none}
+@media(max-width:820px){
+  .price-col{border-right:none;border-bottom:1px solid var(--br)}
+  .price-col:last-child{border-bottom:none}
+}
+.price-col.hot{background:rgba(30,64,175,.1)}
+.price-col.hot::before{
+  content:'Most Popular';
+  position:absolute;top:0;right:0;
+  background:var(--royal);
+  font-size:.54rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--wh);padding:.28rem .65rem;
+  border-bottom-left-radius:3px;
+}
+.price-col:hover{background:rgba(59,130,246,.06)}
+.price-type{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.45rem;font-weight:400;
+  color:var(--wh);margin-bottom:.25rem;
+}
+.price-size{
+  font-size:.64rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mt);margin-bottom:1.5rem;
+}
+.price-row{
+  padding:.82rem 0;border-top:1px solid var(--br);
+  display:flex;justify-content:space-between;
+  align-items:baseline;gap:.5rem;
+}
+.price-plan{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mt)}
+.price-amt{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:300;color:var(--wh);
+}
+.price-amt sup{font-size:.64rem;color:var(--mt)}
+.price-dep{font-size:.57rem;color:rgba(255,255,255,.24);display:block;text-align:right;margin-top:.06rem}
+.price-cta{
+  display:block;margin-top:1.8rem;text-align:center;
+  padding:.75rem;border:1px solid rgba(59,130,246,.3);
+  border-radius:2px;font-size:.7rem;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--sky);
+  transition:background .25s,border-color .25s;
+}
+.price-cta:hover{background:rgba(59,130,246,.1);border-color:var(--sky)}
+.price-note{
+  max-width:1100px;margin:1.4rem auto 0;
+  font-size:.7rem;color:rgba(255,255,255,.26);
+  line-height:1.65;border-top:1px solid var(--br);padding-top:.9rem;
+}
+
+/* ══════════════════════════════════════
+   FLOOR PLANS
+══════════════════════════════════════ */
+.fp-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:start;
+}
+@media(max-width:760px){.fp-grid{grid-template-columns:1fr;gap:2rem}}
+
+.fp-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:2rem 0}
+.fp-tab{
+  padding:.46rem 1.2rem;
+  font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  border-radius:2px;border:1px solid var(--br);
+  background:transparent;color:rgba(255,255,255,.4);
+  transition:all .3s;
+}
+.fp-tab.active,.fp-tab:hover{
+  background:rgba(59,130,246,.12);border-color:var(--sky);color:var(--sky);
+}
+.fp-panel{display:none}
+.fp-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media(max-width:760px){.fp-panel.active{grid-template-columns:1fr;gap:1.5rem}}
+
+.fp-img-box{
+  width:100%;border-radius:3px;border:1px solid var(--br);
+  background:rgba(255,255,255,.02);overflow:hidden;
+}
+.fp-img-box img{width:100%;object-fit:contain;max-height:480px;display:block}
+
+.fp-spec-list{display:flex;flex-direction:column;margin-top:1.4rem}
+.fp-spec-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.82rem 0;border-bottom:1px solid var(--br);font-size:.83rem;
+}
+.fp-spec-row:last-child{border-bottom:none}
+.fp-sk{color:var(--mt)}.fp-sv{color:var(--wh);font-weight:500}
+
+/* ══════════════════════════════════════
+   TIMELINE
+══════════════════════════════════════ */
+.tl{position:relative;padding-left:2.5rem;margin-top:3rem}
+.tl::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:1px;background:var(--br)}
+.tl-step{position:relative;margin-bottom:2.8rem}
+.tl-step:last-child{margin-bottom:0}
+.tl-dot{
+  position:absolute;left:-2.5rem;top:.3rem;
+  width:15px;height:15px;border-radius:50%;
+  background:var(--navy);border:1px solid var(--br);
+  display:flex;align-items:center;justify-content:center;
+}
+.tl-dot.act{border-color:var(--sky);background:rgba(59,130,246,.15)}
+.tl-dot.act::after{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--sky);animation:blink 1.8s ease infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.tl-date{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);margin-bottom:.4rem}
+.tl-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;margin-bottom:.35rem}
+.tl-desc{font-size:.82rem;color:var(--mt);line-height:1.65}
+
+/* ══════════════════════════════════════
+   LOCATION
+══════════════════════════════════════ */
+.loc-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:start;
+  max-width:1280px;margin:0 auto;
+}
+@media(max-width:900px){.loc-pair{grid-template-columns:1fr;gap:3rem}}
+
+.area-row{display:flex;align-items:center;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--br)}
+.area-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.area-dot.b{background:var(--sky);box-shadow:0 0 8px rgba(59,130,246,.5)}
+.area-dot.r{background:var(--royal);box-shadow:0 0 8px rgba(30,64,175,.5)}
+.area-dot.g{background:var(--gold);box-shadow:0 0 8px rgba(201,168,76,.45)}
+.area-name{font-family:'Cormorant Garamond',serif;font-size:.98rem;flex:1}
+.area-note{font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mt)}
+.map-box{aspect-ratio:4/3;background:rgba(255,255,255,.018);border:1px solid var(--br);border-radius:3px;overflow:hidden}
+.map-box svg{width:100%;height:100%}
+</style>
+</head>
+<body>
+<div class="curtain"></div>
+<div id="prog"></div>
+<div id="cdot"></div>
+<div id="cring"></div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="nav">
+  <a href="index.html" class="nlogo">
+    <img src="assets/logo.png" alt="Vistacraft Homes"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="teas-court-2.html" class="active">Tea's Court II</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="ncta">Enquire</a></li>
+  </ul>
+  <button id="hbg" aria-label="Menu">
+    <span id="h1"></span><span id="h2"></span><span id="h3"></span>
+  </button>
+</nav>
+<div id="mob">
+  <a href="index.html" onclick="closeMob()">Home</a>
+  <a href="teas-court-2.html" onclick="closeMob()">Tea's Court II</a>
+  <a href="portfolio.html" onclick="closeMob()">Portfolio</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="contact.html" onclick="closeMob()">Enquire</a>
+</div>
+
+<!-- ═══ HERO — assets/TC2_Front_View.jpg ═══ -->
+<div class="tc2-hero" style="padding-top:var(--nav-h)">
+  <img class="tc2-hero-img" src="assets/TC2_Front_View.jpg" alt="Tea's Court II"
+       onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600&q=85'"/>
+  <div class="tc2-hero-vig"></div>
+  <div class="tc2-hero-body">
+    <div class="tc2-hero-pills">
+      <span class="pill rising"><span class="pill-dot"></span>Rising Now</span>
+      <span class="pill loc">
+        <i class="fa-solid fa-location-dot" style="font-size:.58rem;margin-right:.3rem"></i>Ikate, Lekki, Lagos
+      </span>
+    </div>
+    <h1 class="tc2-hero-title">Tea's Court <em>II</em></h1>
+    <p class="tc2-hero-meta">By Vistacraft Homes &nbsp;·&nbsp; March 2026 &nbsp;·&nbsp; Completion Q3 2027</p>
+    <div class="tc2-hero-btns">
+      <a href="#pricing" class="btn-p">
+        <i class="fa-solid fa-tag" style="margin-right:.4rem"></i>View Pricing
+      </a>
+      <a href="contact.html" class="btn-g">
+        <i class="fa-solid fa-envelope" style="margin-right:.4rem"></i>Enquire
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ OVERVIEW + SNAPSHOT ═══ -->
+<section style="background:var(--navy)">
+  <div class="ov-grid">
+
+    <!-- LEFT: description -->
+    <div class="anim-left">
+      <div class="stag">Project Overview</div>
+      <h2 class="sh2">A New Standard of<br><em>Refined Living</em></h2>
+      <p class="slead" style="margin-bottom:1rem">
+        Tea's Court II is a state-of-the-art development in the heart of Ikate, Lekki, designed for comfort and prestige. It blends contemporary architecture with premium finishes and thoughtfully curated spaces.
+      </p>
+      <p class="slead" style="margin-bottom:1rem">
+        Residents enjoy exclusive amenities including 24/7 security, smart home features, uninterrupted power, ample parking, and serene recreational areas — all crafted to deliver effortless luxury every day.
+      </p>
+      <p class="slead">
+        Tea's Court II is more than a property. It is a statement of success, a sanctuary of style, and a place to truly belong.
+        <em style="font-style:italic;color:rgba(255,255,255,.42)"> Live elevated. Live exclusive.</em>
+      </p>
+    </div>
+
+    <!-- RIGHT: snapshot card — KEY FIX: grid layout prevents key+val collision -->
+    <div class="anim-right d2">
+      <div class="snap-card">
+        <div class="snap-card-hdr">Project Snapshot</div>
+        <div class="snap-row">
+          <span class="snap-key">Location</span>
+          <span class="snap-val">Ikate, Lekki, Lagos</span>
+        </div>
+        <div class="snap-row">
+          <span class="snap-key">Project Start</span>
+          <span class="snap-val">March 2026</span>
+        </div>
+        <div class="snap-row">
+          <span class="snap-key">Completion</span>
+          <span class="snap-val" style="color:var(--sky)">Q3 2027</span>
+        </div>
+        <div class="snap-row">
+          <span class="snap-key">Unit Types</span>
+          <span class="snap-val">1, 2 &amp; 3 Bed + BQ</span>
+        </div>
+        <div class="snap-row">
+          <span class="snap-key">Starting From</span>
+          <span class="snap-val accent">₦150,000,000</span>
+        </div>
+        <div class="snap-row">
+          <span class="snap-key">Title</span>
+          <span class="snap-val">Governor's Consent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TC2 IMAGE GALLERY ── -->
+  <!-- Same visual footprint as TC1 in portfolio: tall main + 2 stacked -->
+  <!-- FILES: TC2_Front_View.jpg | TC2_Left_View.jpg | TC2_Right_View.jpg -->
+  <div class="tc2-gallery anim-up" style="margin-top:3.5rem">
+    <!-- Main tall tile -->
+    <div class="tc2-gal-item tc2-gal-main">
+      <img src="assets/TC2_Front_View.jpg" alt="Tea's Court II — Front View"
+           onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1000&q=85'"/>
+    </div>
+    <!-- Top-right -->
+    <div class="tc2-gal-item">
+      <img src="assets/TC2_Left_View.jpg" alt="Tea's Court II — Left View"
+           onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80'"/>
+    </div>
+    <!-- Bottom-right -->
+    <div class="tc2-gal-item">
+      <img src="assets/TC2_Right_View.jpg" alt="Tea's Court II — Right View"
+           onerror="this.src='https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=700&q=80'"/>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3D SHOWCASE VIDEO — assets/Teas_Court_2_3D_Completion.mp4 ═══ -->
+<section style="background:var(--deep)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="anim-up">
+      <div class="stag">3D Showcase</div>
+      <h2 class="sh2">Vision in <em>Motion</em></h2>
+    </div>
+    <!-- VIDEO: assets/Teas_Court_2_3D_Completion.mp4
+         poster=  assets/TC2_Front_View.jpg (shows while video loads) -->
+    <div class="vid-wrap anim-up d2" style="margin-top:2rem">
+      <img class="vid-wrap-poster" src="assets/TC2_Front_View.jpg" alt="Tea's Court II"
+           onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1400&q=85'"/>
+      <video autoplay muted loop playsinline
+             poster="assets/TC2_Front_View.jpg">
+        <source src="assets/Teas_Court_2_3D_Completion.mp4" type="video/mp4"/>
+      </video>
+      <div class="vid-label">
+        <i class="fa-solid fa-play" style="color:var(--sky)"></i>
+        Tea's Court II — 3D Completion Showcase
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AMENITIES ═══ -->
+<section style="background:var(--navy)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="anim-up">
+      <div class="stag">Why Buy</div>
+      <h2 class="sh2">An Exclusive Living <em>Experience</em></h2>
+      <p class="slead">Every unit includes a private Boys' Quarters (BQ) — all within a secure gated estate. The building is equipped with:</p>
+    </div>
+    <div class="amen-grid-tc2 anim-up d2">
+      <div class="amen-row"><i class="fa-solid fa-person-swimming"></i><span>Beautifully Designed Swimming Pool</span></div>
+      <div class="amen-row"><i class="fa-solid fa-martini-glass-citrus"></i><span>Elegant Rooftop Lounge with Panoramic Views</span></div>
+      <div class="amen-row"><i class="fa-solid fa-bolt"></i><span>Independent Power Plant (IPP) + Generator Backup</span></div>
+      <div class="amen-row"><i class="fa-solid fa-elevator"></i><span>Two High-Speed Elevators for Seamless Movement</span></div>
+      <div class="amen-row"><i class="fa-solid fa-bath"></i><span>All Rooms Ensuite</span></div>
+      <div class="amen-row"><i class="fa-solid fa-car"></i><span>Dedicated Parking Space for Every Unit</span></div>
+      <div class="amen-row"><i class="fa-solid fa-droplet"></i><span>24-Hour Water Supply + Water Treatment System</span></div>
+      <div class="amen-row"><i class="fa-solid fa-shield-halved"></i><span>Secure Gated Estate — Balcony in Every Unit</span></div>
+      <div class="amen-row"><i class="fa-solid fa-concierge-bell"></i><span>Professional Concierge Service</span></div>
+      <div class="amen-row"><i class="fa-solid fa-road"></i><span>Excellent Road Accessibility + Proper Drainage</span></div>
+    </div>
+    <div style="margin-top:1.5rem;padding:1rem 1.25rem;border:1px solid rgba(59,130,246,.2);border-radius:3px;background:rgba(59,130,246,.04);display:flex;align-items:center;gap:.75rem" class="anim-up d3">
+      <i class="fa-solid fa-plug-circle-bolt" style="color:var(--sky);flex-shrink:0"></i>
+      <p style="font-size:.76rem;color:rgba(255,255,255,.56);line-height:1.5">
+        24-hour electricity supply guaranteed — <strong style="color:var(--wh)">Powered by Eko Electric Distribution Company</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section id="pricing" style="background:linear-gradient(180deg,var(--deep) 0%,var(--navy) 100%)">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="anim-up" style="max-width:560px;margin-bottom:3rem">
+      <div class="stag">Investment Opportunity</div>
+      <h2 class="sh2">Transparent <em>Pricing</em></h2>
+      <p class="slead">Flexible payment plans to make your investment seamless. Governor's Consent title available on request.</p>
+    </div>
+    <div class="price-grid anim-up d2">
+      <div class="price-col">
+        <div class="price-type">1 Bedroom + BQ</div>
+        <div class="price-size">70 sqm &nbsp;·&nbsp; All Ensuite</div>
+        <div class="price-row"><span class="price-plan">Outright</span><span class="price-amt">₦150M <sup>NGN</sup></span></div>
+        <div class="price-row"><span class="price-plan">6 Months</span><div><span class="price-amt">₦160M <sup>NGN</sup></span><span class="price-dep">50% min. deposit</span></div></div>
+        <div class="price-row"><span class="price-plan">1 Year</span><div><span class="price-amt">₦180M <sup>NGN</sup></span><span class="price-dep">30% min. deposit</span></div></div>
+        <a href="contact.html" class="price-cta">Enquire Now</a>
+      </div>
+      <div class="price-col hot">
+        <div class="price-type">2 Bedroom + BQ</div>
+        <div class="price-size">150 sqm &nbsp;·&nbsp; All Ensuite</div>
+        <div class="price-row"><span class="price-plan">Outright</span><span class="price-amt">₦220M <sup>NGN</sup></span></div>
+        <div class="price-row"><span class="price-plan">6 Months</span><div><span class="price-amt">₦240M <sup>NGN</sup></span><span class="price-dep">50% min. deposit</span></div></div>
+        <div class="price-row"><span class="price-plan">1 Year</span><div><span class="price-amt">₦250M <sup>NGN</sup></span><span class="price-dep">30% min. deposit</span></div></div>
+        <a href="contact.html" class="price-cta">Enquire Now</a>
+      </div>
+      <div class="price-col">
+        <div class="price-type">3 Bedroom + BQ</div>
+        <div class="price-size">190 sqm &nbsp;·&nbsp; All Ensuite</div>
+        <div class="price-row"><span class="price-plan">Outright</span><span class="price-amt">₦260M <sup>NGN</sup></span></div>
+        <div class="price-row"><span class="price-plan">6 Months</span><div><span class="price-amt">₦280M <sup>NGN</sup></span><span class="price-dep">50% min. deposit</span></div></div>
+        <div class="price-row"><span class="price-plan">1 Year</span><div><span class="price-amt">₦300M <sup>NGN</sup></span><span class="price-dep">30% min. deposit</span></div></div>
+        <a href="contact.html" class="price-cta">Enquire Now</a>
+      </div>
+    </div>
+    <p class="price-note anim-up d3">
+      <i class="fa-solid fa-star" style="color:var(--sky);font-size:.52rem;margin-right:.4rem"></i>
+      Project Start: March 2026 &nbsp;&middot;&nbsp; Completion: Q3 2027 &nbsp;&middot;&nbsp; Title: Governor's Consent &nbsp;&middot;&nbsp; Location: Ikate, Lekki, Lagos
+    </p>
+  </div>
+</section>
+
+<!-- ═══ FLOOR PLANS ═══
+     FILES: assets/1BEDROOM.jpg  /  assets/2BEDROOM.jpg  /  assets/3BEDROOM.jpg -->
+<section style="background:var(--navy)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="anim-up">
+      <div class="stag">Layout &amp; Space</div>
+      <h2 class="sh2">Floor <em>Plans</em></h2>
+      <p class="slead">Thoughtfully engineered layouts balancing openness, privacy, and flow.</p>
+    </div>
+    <div class="fp-tabs">
+      <button class="fp-tab active" onclick="showFP(0,this)">1 Bed + BQ — 70sqm</button>
+      <button class="fp-tab"        onclick="showFP(1,this)">2 Bed + BQ — 150sqm</button>
+      <button class="fp-tab"        onclick="showFP(2,this)">3 Bed + BQ — 190sqm</button>
+    </div>
+    <!-- PANEL 0: assets/1BEDROOM.jpg -->
+    <div class="fp-panel active anim-in">
+      <div class="fp-img-box">
+        <img src="public/assets/1BEDROOM.png" alt="1 Bed + BQ Floor Plan 70sqm"
+             onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&q=80'"/>
+      </div>
+      <div>
+        <h3 class="sh2" style="font-size:clamp(1.5rem,3vw,2.2rem)">1 Bedroom + BQ</h3>
+        <p class="slead" style="font-size:.86rem;margin-bottom:.5rem">Refined single-bedroom with terrace, greenery ledge, and private BQ.</p>
+        <div class="fp-spec-list">
+          <div class="fp-spec-row"><span class="fp-sk">Total Area</span><span class="fp-sv">70 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Living / Dining</span><span class="fp-sv">25 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Bedroom (Ensuite)</span><span class="fp-sv">15 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Kitchen</span><span class="fp-sv">9 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Boys' Quarters</span><span class="fp-sv">4 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Terrace + Greenery</span><span class="fp-sv">Included</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Outright Price</span><span class="fp-sv" style="color:var(--sky)">₦150,000,000</span></div>
+        </div>
+        <a href="contact.html" class="btn-p" style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;padding:.75rem 1.6rem">
+          <i class="fa-solid fa-envelope"></i> Enquire About This Unit
+        </a>
+      </div>
+    </div>
+    <!-- PANEL 1: assets/2BEDROOM.jpg -->
+    <div class="fp-panel anim-in">
+      <div class="fp-img-box">
+        <img src="public/assets/2BEDROOM.png" alt="2 Bed + BQ Floor Plan 150sqm"
+             onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&q=80'"/>
+      </div>
+      <div>
+        <h3 class="sh2" style="font-size:clamp(1.5rem,3vw,2.2rem)">2 Bedroom + BQ</h3>
+        <p class="slead" style="font-size:.86rem;margin-bottom:.5rem">Expansive dual-bedroom layout with dual terraces and walk-in closets.</p>
+        <div class="fp-spec-list">
+          <div class="fp-spec-row"><span class="fp-sk">Total Area</span><span class="fp-sv">150 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Living Room</span><span class="fp-sv">29 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Bedroom 1 (Master)</span><span class="fp-sv">22 sqm — Ensuite + Terrace</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Bedroom 2</span><span class="fp-sv">14 sqm — Ensuite</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Kitchen</span><span class="fp-sv">13 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Boys' Quarters</span><span class="fp-sv">5 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Outright Price</span><span class="fp-sv" style="color:var(--sky)">₦220,000,000</span></div>
+        </div>
+        <a href="contact.html" class="btn-p" style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;padding:.75rem 1.6rem">
+          <i class="fa-solid fa-envelope"></i> Enquire About This Unit
+        </a>
+      </div>
+    </div>
+    <!-- PANEL 2: assets/3BEDROOM.jpg -->
+    <div class="fp-panel anim-in">
+      <div class="fp-img-box">
+        <img src="public/assets/3BEDROOM.png" alt="3 Bed + BQ Floor Plan 190sqm"
+             onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&q=80'"/>
+      </div>
+      <div>
+        <h3 class="sh2" style="font-size:clamp(1.5rem,3vw,2.2rem)">3 Bedroom + BQ</h3>
+        <p class="slead" style="font-size:.86rem;margin-bottom:.5rem">Three full en-suite bedrooms, dual terraces, pantry, and private BQ.</p>
+        <div class="fp-spec-list">
+          <div class="fp-spec-row"><span class="fp-sk">Total Area</span><span class="fp-sv">190 sqm</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Living Room</span><span class="fp-sv">29 sqm + Terrace</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Bedroom 1 (Master)</span><span class="fp-sv">22 sqm — Ensuite + Terrace</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Bedroom 2</span><span class="fp-sv">14 sqm — Ensuite</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Bedroom 3</span><span class="fp-sv">19 sqm — Ensuite + Terrace</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Kitchen + Pantry</span><span class="fp-sv">22 sqm total</span></div>
+          <div class="fp-spec-row"><span class="fp-sk">Outright Price</span><span class="fp-sv" style="color:var(--sky)">₦260,000,000</span></div>
+        </div>
+        <a href="contact.html" class="btn-p" style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;padding:.75rem 1.6rem">
+          <i class="fa-solid fa-envelope"></i> Enquire About This Unit
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONSTRUCTION TIMELINE ═══ -->
+<section style="background:var(--deep)">
+  <div style="max-width:900px;margin:0 auto">
+    <div class="anim-up">
+      <div class="stag">Construction Timeline</div>
+      <h2 class="sh2">Building Your <em>Future</em></h2>
+      <p class="slead">A structured, transparent roadmap from groundbreaking to handover.</p>
+    </div>
+    <div class="tl">
+      <div class="tl-step anim-up d1">
+        <div class="tl-dot act"></div>
+        <p class="tl-date">March 2026</p>
+        <h3 class="tl-title">Project Commencement</h3>
+        <p class="tl-desc">Ground-breaking and foundation works begin. Sales now open with 6-month and 1-year payment plans from 30–50% initial deposit.</p>
+      </div>
+      <div class="tl-step anim-up d2">
+        <div class="tl-dot"></div>
+        <p class="tl-date">Q3 – Q4 2026</p>
+        <h3 class="tl-title">Structural Works</h3>
+        <p class="tl-desc">Superstructure, columns, and floor slabs completed across all levels. Regular progress updates shared with all investors.</p>
+      </div>
+      <div class="tl-step anim-up d3">
+        <div class="tl-dot"></div>
+        <p class="tl-date">Q1 – Q2 2027</p>
+        <h3 class="tl-title">Finishing &amp; MEP</h3>
+        <p class="tl-desc">Premium interior finishes, mechanical, electrical, and plumbing installations. Elevator, rooftop lounge, and swimming pool works.</p>
+      </div>
+      <div class="tl-step anim-up d4">
+        <div class="tl-dot"></div>
+        <p class="tl-date">Q3 2027</p>
+        <h3 class="tl-title">Keys Handover</h3>
+        <p class="tl-desc">Keys handed to homeowners. Governor's Consent title delivered. Building certification and all regulatory approvals complete.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOCATION ═══ -->
+<section style="background:var(--navy)">
+  <div class="loc-pair">
+    <div class="anim-left">
+      <div class="stag">Location Advantage</div>
+      <h2 class="sh2">Rooted in Lekki's <em>Finest</em></h2>
+      <p class="slead">Perfectly positioned within Ikate — one of Lagos' most desirable neighbourhoods. Privacy, convenience, excellent road access, and exceptional investment value.</p>
+      <div style="margin-top:2rem">
+        <div class="area-row"><div class="area-dot b"></div><span class="area-name">Ikate, Lekki</span><span class="area-note">Project Location</span></div>
+        <div class="area-row"><div class="area-dot r"></div><span class="area-name">Lekki Phase 1</span><span class="area-note">Minutes Away</span></div>
+        <div class="area-row"><div class="area-dot g"></div><span class="area-name">Victoria Island</span><span class="area-note">Commercial Hub</span></div>
+        <div class="area-row"><div class="area-dot b"></div><span class="area-name">Lekki-Epe Expressway</span><span class="area-note">Excellent Road Access</span></div>
+        <div class="area-row"><div class="area-dot r"></div><span class="area-name">Eko Atlantic City</span><span class="area-note">Emerging Corridor</span></div>
+      </div>
+    </div>
+    <div class="map-box anim-right d3">
+      <svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg">
+        <rect width="500" height="380" fill="#071830"/>
+        <path d="M0 0 L500 0 L500 155 Q440 150 380 148 L260 145 L140 150 L60 158 L0 162 Z" fill="#0D2A4A"/>
+        <path d="M70 175 Q115 162 205 160 L360 158 Q425 160 465 174 L468 242 Q455 268 402 272 L215 274 Q155 272 115 263 L68 248 Q52 233 52 214 Z" fill="#0D2A4A"/>
+        <path d="M195 160 L290 158 L292 222 L193 224 Z" fill="rgba(59,130,246,.18)" stroke="rgba(59,130,246,.4)" stroke-width="1"/>
+        <path d="M70 175 L195 163 L193 224 L70 226 Z" fill="rgba(30,64,175,.1)" stroke="rgba(30,64,175,.2)" stroke-width="1"/>
+        <line x1="52" y1="194" x2="468" y2="194" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+        <circle cx="240" cy="190" r="18" fill="none" stroke="rgba(59,130,246,.35)" stroke-width="1">
+          <animate attributeName="r" values="8;22;8" dur="2.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;0.1;0.8" dur="2.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="240" cy="190" r="7" fill="#3B82F6"/><circle cx="240" cy="190" r="3.5" fill="#fff"/>
+        <circle cx="122" cy="200" r="5.5" fill="#1E40AF"/><circle cx="122" cy="200" r="2.5" fill="#fff"/>
+        <circle cx="82" cy="220" r="5" fill="#C9A84C"/><circle cx="82" cy="220" r="2" fill="#fff"/>
+        <text x="240" y="210" fill="rgba(255,255,255,.6)" font-size="8.5" font-family="DM Sans,sans-serif" text-anchor="middle">Ikate, Lekki</text>
+        <text x="122" y="218" fill="rgba(255,255,255,.4)" font-size="7.5" font-family="DM Sans,sans-serif" text-anchor="middle">V.I. / Lekki 1</text>
+        <text x="380" y="204" fill="rgba(255,255,255,.28)" font-size="8" font-family="DM Sans,sans-serif">Lekki Peninsula</text>
+        <text x="200" y="108" fill="rgba(255,255,255,.24)" font-size="8" font-family="DM Sans,sans-serif" text-anchor="middle">Lagos Mainland</text>
+        <g transform="translate(462,30)">
+          <circle r="15" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+          <text x="0" y="-4" fill="rgba(255,255,255,.5)" font-size="7" font-family="DM Sans,sans-serif" text-anchor="middle">N</text>
+          <line x1="0" y1="-2" x2="0" y2="-11" stroke="#3B82F6" stroke-width="1.5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<div style="background:linear-gradient(135deg,var(--royal) 0%,var(--royalL) 100%);padding:5rem 3.5rem;text-align:center">
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:var(--wh);margin-bottom:.75rem" class="anim-up">Secure Your Unit Today</h2>
+  <p style="color:rgba(255,255,255,.72);font-size:.88rem;max-width:420px;margin:0 auto 2rem;line-height:1.7" class="anim-up d1">Units are limited. Contact our team to confirm availability.</p>
+  <a href="contact.html" class="btn-g anim-up d2" style="border-color:rgba(255,255,255,.4);color:var(--wh)">Get In Touch</a>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p class="fcopy">© 2026 <span>Vistacraft Homes</span> &nbsp;·&nbsp; Ikate, Lekki, Lagos &nbsp;·&nbsp; All Rights Reserved</p>
+  <p class="fdesign">Designed by <span>Jackson</span></p>
+</footer>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

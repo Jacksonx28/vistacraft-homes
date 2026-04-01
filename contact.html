@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — Vistacraft Homes</title>
+<meta name="description" content="Contact Vistacraft Homes — enquire about Tea's Court II. +234 704 558 5828 · contact@vistacrafthomes.com"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+<div class="curtain"></div>
+<div id="prog"></div>
+<div id="cdot"></div>
+<div id="cring"></div>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <a href="index.html" class="nlogo">
+    <img src="assets/logo.png" alt="Vistacraft Homes"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="teas-court-2.html">Tea's Court II</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active ncta">Enquire</a></li>
+  </ul>
+  <button id="hbg" aria-label="Menu">
+    <span id="h1"></span><span id="h2"></span><span id="h3"></span>
+  </button>
+</nav>
+<div id="mob">
+  <a href="index.html" onclick="closeMob()">Home</a>
+  <a href="teas-court-2.html" onclick="closeMob()">Tea's Court II</a>
+  <a href="portfolio.html" onclick="closeMob()">Portfolio</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="contact.html" onclick="closeMob()">Enquire</a>
+</div>
+
+<!-- CONTACT SECTION -->
+<section style="background:var(--deep);padding-top:calc(var(--nav-h) + 5rem)">
+  <div class="contact-grid mw">
+
+    <!-- FORM -->
+    <div class="anim-left">
+      <div class="stag">Get In Touch</div>
+      <h1 class="sh2">Begin Your<br><em>Legacy</em> Today</h1>
+      <p class="slead" style="margin-bottom:2rem">Whether securing your dream home or a high-value investment, our team is ready to guide every step of the journey. Contact us about Tea's Court II.</p>
+
+      <form class="cf" onsubmit="doForm(event)">
+        <div class="cfrow">
+          <div class="cff">
+            <label>First Name</label>
+            <input type="text" placeholder="Adebayo" required/>
+          </div>
+          <div class="cff">
+            <label>Last Name</label>
+            <input type="text" placeholder="Okafor" required/>
+          </div>
+        </div>
+        <div class="cff">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@email.com" required/>
+        </div>
+        <div class="cff">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+234 ···"/>
+        </div>
+        <div class="cff">
+          <label>Apartment Interest</label>
+          <select>
+            <option value="">Select unit type</option>
+            <option>1 Bedroom + BQ (70sqm) — From ₦150M</option>
+            <option>2 Bedroom + BQ (150sqm) — From ₦220M</option>
+            <option>3 Bedroom + BQ (190sqm) — From ₦260M</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="cff">
+          <label>Preferred Payment Plan</label>
+          <select>
+            <option value="">Select plan</option>
+            <option>Outright Purchase</option>
+            <option>6-Month Plan (50% min. deposit)</option>
+            <option>1-Year Plan (30% min. deposit)</option>
+          </select>
+        </div>
+        <div class="cff">
+          <label>Message</label>
+          <textarea placeholder="Tell us more about what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="cf-btn">
+          <i class="fa-solid fa-paper-plane"></i> Submit Enquiry
+        </button>
+        <div class="cf-ok" id="cfok">
+          <i class="fa-solid fa-circle-check" style="margin-right:.5rem"></i>
+          Thank you. Our team will be in touch within 24 hours.
+        </div>
+      </form>
+    </div>
+
+    <!-- CONTACT DETAILS -->
+    <div class="anim-right d2">
+      <div class="ci-block">
+        <h4><i class="fa-solid fa-phone" style="margin-right:.4rem"></i>Phone</h4>
+        <a href="tel:+2347045585828">+234 704 558 5828</a>
+      </div>
+      <div class="ci-block">
+        <h4><i class="fa-solid fa-envelope" style="margin-right:.4rem"></i>Email</h4>
+        <a href="mailto:contact@vistacrafthomes.com">contact@vistacrafthomes.com</a>
+      </div>
+      <div class="ci-block">
+        <h4><i class="fa-solid fa-location-dot" style="margin-right:.4rem"></i>Project Location</h4>
+        <p>Ikate, Lekki<br>Lagos, Nigeria</p>
+      </div>
+      <div class="ci-block">
+        <h4><i class="fa-solid fa-calendar" style="margin-right:.4rem"></i>Construction Timeline</h4>
+        <p>Start: March 2026<br>Completion: Q3 2027</p>
+      </div>
+      <div class="ci-block">
+        <h4><i class="fa-solid fa-share-nodes" style="margin-right:.4rem"></i>Follow Us</h4>
+        <!-- Social icons — FIXED: flex centering on i tag -->
+        <div class="socials">
+          <a href="https://www.instagram.com/vistacrafthomes/" target="_blank" rel="noopener"
+             class="soc" title="Instagram @vistacrafthomes">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/2347045585828" target="_blank" rel="noopener"
+             class="soc" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+      <div class="legal-note">
+        <p><span>Title Documentation</span><br>Governor's Consent — available on request.<br>All transactions subject to Vistacraft Homes Terms &amp; Conditions.</p>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div style="margin-top:2rem;padding:1.5rem;border:1px solid var(--br);border-radius:3px;background:rgba(255,255,255,.018)">
+        <p style="font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sky);margin-bottom:1rem">Quick Actions</p>
+        <div style="display:flex;flex-direction:column;gap:.6rem">
+          <a href="teas-court-2.html#pricing" style="display:flex;align-items:center;gap:.65rem;font-size:.82rem;color:rgba(255,255,255,.65);transition:color .2s">
+            <i class="fa-solid fa-tag" style="color:var(--sky);width:14px"></i> View Pricing
+          </a>
+          <a href="teas-court-2.html#pricing" style="display:flex;align-items:center;gap:.65rem;font-size:.82rem;color:rgba(255,255,255,.65);transition:color .2s">
+            <i class="fa-solid fa-vector-square" style="color:var(--sky);width:14px"></i> View Floor Plans
+          </a>
+          <a href="portfolio.html" style="display:flex;align-items:center;gap:.65rem;font-size:.82rem;color:rgba(255,255,255,.65);transition:color .2s">
+            <i class="fa-solid fa-images" style="color:var(--sky);width:14px"></i> View Full Portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="fcopy">© 2026 <span>Vistacraft Homes</span> &nbsp;·&nbsp; Ikate, Lekki, Lagos &nbsp;·&nbsp; All Rights Reserved</p>
+  <p class="fdesign">Designed by <span>Jackson</span></p>
+</footer>
+
+<script src="js/shared.js"></script>
+</body>
+</html>
