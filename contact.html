@@ -17,7 +17,7 @@
 <!-- NAVBAR -->
 <nav id="nav">
   <a href="index.html" class="nlogo">
-    <img src="public/assets/logo.png" alt="Vistacraft Homes"
+    <img src="assets/logo.png" alt="Vistacraft Homes"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
   </a>
   <ul class="nlinks">
@@ -49,28 +49,28 @@
       <h1 class="sh2">Begin Your<br><em>Legacy</em> Today</h1>
       <p class="slead" style="margin-bottom:2rem">Whether securing your dream home or a high-value investment, our team is ready to guide every step of the journey. Contact us about Tea's Court II.</p>
 
-      <form class="cf" onsubmit="doForm(event)">
+      <form class="cf" onsubmit="handleMailtoSubmit(event)">
         <div class="cfrow">
           <div class="cff">
             <label>First Name</label>
-            <input type="text" placeholder="Adebayo" required/>
+            <input type="text" id="firstName" placeholder="Adebayo" required/>
           </div>
           <div class="cff">
             <label>Last Name</label>
-            <input type="text" placeholder="Okafor" required/>
+            <input type="text" id="lastName" placeholder="Okafor" required/>
           </div>
         </div>
         <div class="cff">
           <label>Email Address</label>
-          <input type="email" placeholder="you@email.com" required/>
+          <input type="email" id="emailAddress" placeholder="you@email.com" required/>
         </div>
         <div class="cff">
           <label>Phone Number</label>
-          <input type="tel" placeholder="+234 ···"/>
+          <input type="tel" id="phoneNumber" placeholder="+234 ···"/>
         </div>
         <div class="cff">
           <label>Apartment Interest</label>
-          <select>
+          <select id="apartmentInterest">
             <option value="">Select unit type</option>
             <option>1 Bedroom + BQ (70sqm) — From ₦150M</option>
             <option>2 Bedroom + BQ (150sqm) — From ₦220M</option>
@@ -80,7 +80,7 @@
         </div>
         <div class="cff">
           <label>Preferred Payment Plan</label>
-          <select>
+          <select id="paymentPlan">
             <option value="">Select plan</option>
             <option>Outright Purchase</option>
             <option>6-Month Plan (50% min. deposit)</option>
@@ -89,14 +89,14 @@
         </div>
         <div class="cff">
           <label>Message</label>
-          <textarea placeholder="Tell us more about what you're looking for..."></textarea>
+          <textarea id="message" placeholder="Tell us more about what you're looking for..."></textarea>
         </div>
         <button type="submit" class="cf-btn">
           <i class="fa-solid fa-paper-plane"></i> Submit Enquiry
         </button>
         <div class="cf-ok" id="cfok">
           <i class="fa-solid fa-circle-check" style="margin-right:.5rem"></i>
-          Thank you. Our team will be in touch within 24 hours.
+          Opening your email application...
         </div>
       </form>
     </div>

@@ -136,3 +136,39 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 })();
+
+function handleMailtoSubmit(event) {
+  event.preventDefault(); // Stop the form from doing a page refresh
+
+  // 1. Grab all the values from the form
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const email = document.getElementById('emailAddress').value;
+  const phone = document.getElementById('phoneNumber').value || 'Not provided';
+  const interest = document.getElementById('apartmentInterest').value || 'Not specified';
+  const plan = document.getElementById('paymentPlan').value || 'Not specified';
+  const message = document.getElementById('message').value || 'No message left.';
+
+  // 2. Create the email subject and body
+  const subject = encodeURIComponent(`New Enquiry: Tea's Court II - ${firstName} ${lastName}`);
+  
+  const body = encodeURIComponent(
+    `Hello Vistacraft Homes Team,\n\n` +
+    `I am interested in Tea's Court II. Here are my details:\n\n` +
+    `Name: ${firstName} ${lastName}\n` +
+    `Email: ${email}\n` +
+    `Phone: ${phone}\n` +
+    `Apartment Interest: ${interest}\n` +
+    `Preferred Payment Plan: ${plan}\n\n` +
+    `Message:\n${message}\n`
+  );
+
+  // 3. Show the success message UI briefly
+  const okMessage = document.getElementById('cfok');
+  if (okMessage) {
+    okMessage.style.display = 'flex';
+  }
+
+  // 4. Fire the mailto link to open the user's email client
+  window.location.href = `mailto:contact@vistacrafthomes.com?subject=${subject}&body=${body}`;
+}
