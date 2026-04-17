@@ -137,38 +137,85 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 })();
 
-function handleMailtoSubmit(event) {
-  event.preventDefault(); // Stop the form from doing a page refresh
+/* ── EMAILJS FORM HANDLER ──────────────────────────────
+   Setup steps (one-time, 5 minutes):
+   1. Go to emailjs.com → create a free account
+   2. Add a Service (Gmail or any email) → note your Service ID
+   3. Create a Template — use these variables in the template body:
+      {{first_name}}, {{last_name}}, {{email}}, {{phone}},
+      {{apartment_interest}}, {{payment_plan}}, {{message}}
+      Set "Reply To" field to: {{email}}
+   4. Go to Account → API Keys → copy your Public Key
+   5. In contact.html <head>, replace 'YOUR_PUBLIC_KEY' with your key
+   6. Below, replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID'
+──────────────────────────────────────────────────── */
+async function sendEnquiry(event) {
+  event.preventDefault();
 
-  // 1. Grab all the values from the form
-  const firstName = document.getElementById('firstName').value;
-  const lastName = document.getElementById('lastName').value;
-  const email = document.getElementById('emailAddress').value;
-  const phone = document.getElementById('phoneNumber').value || 'Not provided';
-  const interest = document.getElementById('apartmentInterest').value || 'Not specified';
-  const plan = document.getElementById('paymentPlan').value || 'Not specified';
-  const message = document.getElementById('message').value || 'No message left.';
+  const btn     = document.getElementById('submitBtn');
+  const btnTxt  = document.getElementById('submitTxt');
+  const okMsg   = document.getElementById('cfok');
+  const errMsg  = document.getElementById('cfErr');
+  const form    = document.getElementById('enquiryForm');
 
-  // 2. Create the email subject and body
-  const subject = encodeURIComponent(`New Enquiry: Tea's Court II - ${firstName} ${lastName}`);
-  
-  const body = encodeURIComponent(
-    `Hello Vistacraft Homes Team,\n\n` +
-    `I am interested in Tea's Court II. Here are my details:\n\n` +
-    `Name: ${firstName} ${lastName}\n` +
-    `Email: ${email}\n` +
-    `Phone: ${phone}\n` +
-    `Apartment Interest: ${interest}\n` +
-    `Preferred Payment Plan: ${plan}\n\n` +
-    `Message:\n${message}\n`
-  );
+  // Loading state
+  if (btn)    btn.disabled = true;
+  if (btnTxt) btnTxt.textContent = 'Sending...';
 
-  // 3. Show the success message UI briefly
-  const okMessage = document.getElementById('cfok');
-  if (okMessage) {
-    okMessage.style.display = 'flex';
+  const templateParams = {
+    first_name:          document.getElementById('firstName')?.value || '',
+    last_name:           document.getElementById('lastName')?.value  || '',
+    email:               document.getElementById('emailAddress')?.value || '',
+    phone:               document.getElementById('phoneNumber')?.value || 'Not provided',
+    apartment_interest:  document.getElementById('apartmentInterest')?.value || 'Not specified',
+    payment_plan:        document.getElementById('paymentPlan')?.value || 'Not specified',
+    message:             document.getElementById('message')?.value || 'No message.'
+  };
+
+  // Check if EmailJS is configured
+  const SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← replace this
+  const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← replace this
+
+  if (SERVICE_ID === 'YOUR_SERVICE_ID') {
+    // EmailJS not yet set up — fall back to mailto so enquiries still get through
+    const subject = encodeURIComponent(`New Enquiry: Tea's Court II - ${templateParams.first_name} ${templateParams.last_name}`);
+    const body    = encodeURIComponent(
+      `Name: ${templateParams.first_name} ${templateParams.last_name}\n` +
+      `Email: ${templateParams.email}\n` +
+      `Phone: ${templateParams.phone}\n` +
+      `Interest: ${templateParams.apartment_interest}\n` +
+      `Plan: ${templateParams.payment_plan}\n\n` +
+      `Message:\n${templateParams.message}`
+    );
+    window.location.href = `mailto:contact@vistacrafthomes.com?subject=${subject}&body=${body}`;
+    if (btn)    btn.disabled = false;
+    if (btnTxt) btnTxt.textContent = 'Submit Enquiry';
+    return;
   }
 
-  // 4. Fire the mailto link to open the user's email client
-  window.location.href = `mailto:contact@vistacrafthomes.com?subject=${subject}&body=${body}`;
+  try {
+    await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+    if (okMsg) { okMsg.style.display = 'flex'; }
+    if (errMsg) { errMsg.style.display = 'none'; }
+    if (form)   form.reset();
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    if (errMsg) { errMsg.style.display = 'flex'; }
+    if (okMsg)  { okMsg.style.display = 'none'; }
+  } finally {
+    if (btn)    btn.disabled = false;
+    if (btnTxt) btnTxt.textContent = 'Submit Enquiry';
+  }
 }
+
+/* ── BACK TO TOP ── */
+(function initBackTop() {
+  const btn = document.getElementById('back-top');
+  if (!btn) return;
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();

@@ -3,12 +3,71 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Vistacraft Homes — Premium Residences, Lekki Lagos</title>
-<meta name="description" content="Vistacraft Homes — luxury residential developments in Lekki, Lagos. Presenting Tea's Court II, now selling."/>
-<link rel="stylesheet" href="css/style.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<title>Luxury Apartments for Sale in Lekki Lagos | Vistacraft Homes</title>
+<meta name="description" content="Buy 1, 2 & 3 bedroom luxury apartments in Ikate, Lekki Lagos from ₦150M. Tea's Court II by Vistacraft Homes — premium off-plan residences, rising now. Enquire today."/>
+<meta name="keywords" content="luxury apartments Lekki Lagos, apartments for sale Ikate Lekki, off-plan property Lagos, Tea's Court II Vistacraft, 2 bedroom apartment Lekki"/>
+<link rel="canonical" href="https://vistacraft-homes.vercel.app/"/>
+
+<!-- Open Graph — controls WhatsApp / Facebook link previews -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Luxury Apartments for Sale in Lekki Lagos | Vistacraft Homes"/>
+<meta property="og:description" content="Tea's Court II — 1, 2 & 3 bedroom premium residences in Ikate Lekki. From ₦150M. Rising now, completion Q3 2027."/>
+<meta property="og:url" content="https://vistacraft-homes.vercel.app/"/>
+<meta property="og:image" content="https://vistacraft-homes.vercel.app/assets/TC2_Front_View.jpg"/>
+<meta property="og:site_name" content="Vistacraft Homes"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<!-- Schema: LocalBusiness + RealEstateAgent — helps Google show rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "RealEstateAgent"],
+  "name": "Vistacraft Homes",
+  "description": "Premium luxury residential developer in Lekki, Lagos. Specialising in off-plan apartments with premium finishes.",
+  "url": "https://vistacraft-homes.vercel.app",
+  "telephone": "+2347045585828",
+  "email": "contact@vistacrafthomes.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ikate",
+    "addressLocality": "Lekki",
+    "addressRegion": "Lagos",
+    "addressCountry": "NG"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 6.4431, "longitude": 3.5183 },
+  "sameAs": ["https://www.instagram.com/vistacrafthomes/"],
+  "priceRange": "₦₦₦"
+}
+</script>
+
+<!-- Google Analytics 4 — uncomment and replace G-XXXXXXXXXX with your Measurement ID
+     Get it at: analytics.google.com → Admin → Data Streams
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+</script> -->
+
+<!-- Meta Pixel — uncomment and replace PIXEL_ID
+     Get it at: business.facebook.com → Events Manager
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','PIXEL_ID'); fbq('track','PageView');
+</script> -->
+
 <link rel="icon" type="image/png" href="assets/logo.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/logo.png">
+<!-- Performance: preconnect reduces DNS lookup time for external fonts/icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <style>
 /* ── FEATURED SECTION ── */
 .feat-grid{
@@ -136,7 +195,7 @@
 
 /* ── CTA BAND ── */
 .cta-band{
-  background:linear-gradient(135deg,var(--royal) 20%,var(--navy) 100%);
+  background:linear-gradient(135deg,var(--royal) 20%,var(--navy) 80%);
   padding:5rem 3.5rem;text-align:center;
 }
 @media(max-width:600px){.cta-band{padding:4rem 1.5rem}}
@@ -169,6 +228,17 @@
 <div id="cdot"></div>
 <div id="cring"></div>
 
+<!-- Sticky WhatsApp button — appears on every page, pre-filled message -->
+<a href="https://wa.me/2347045585828?text=Hi%2C%20I%27m%20interested%20in%20Tea%27s%20Court%20II%20by%20Vistacraft%20Homes.%20Can%20you%20send%20me%20more%20details%3F"
+   id="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Back to top button -->
+<button id="back-top" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
 <!-- ═══ NAVBAR ═══ -->
 <nav id="nav">
   <a href="index.html" class="nlogo">
@@ -198,7 +268,11 @@
 <section class="hero">
   <div class="hero-vid-wrap">
     <div class="hero-fallback"></div>
-    <video autoplay muted loop playsinline id="heroVid">
+    <!-- preload="metadata" = loads only first frame, not the full video file on page load -->
+    <!-- poster = shows this image instantly while video loads — no blank screen on slow connections -->
+    <video autoplay muted loop playsinline id="heroVid"
+           preload="metadata"
+           poster="assets/TC2_Front_View.jpg">
       <source src="assets/tea1.mp4" type="video/mp4"/>
     </video>
   </div>
@@ -248,8 +322,10 @@
   <div class="feat-grid">
     <!-- IMAGE: assets/TC2_Front_View.jpg -->
     <div class="feat-img-wrap anim-left">
-      <img class="feat-main-img" src="assets/TC2_Front_View.jpg" alt="Tea's Court II Front View"
-           onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1000&q=85'"/>
+      <img class="feat-main-img"
+           src="assets/TC2_Front_View.jpg"
+           alt="Tea's Court II — luxury 2 and 3 bedroom apartments for sale in Ikate Lekki Lagos"
+           loading="lazy"/>
       <div class="feat-badge">
         <span class="feat-badge-big">Q3 '27</span>
         <span class="feat-badge-sm">Expected<br>Completion</span>
@@ -286,7 +362,9 @@
     <div class="proj-grid-home">
       <!-- CARD 1: TC2 — assets/TC2_Left_View.jpg -->
       <a href="teas-court-2.html" class="proj-card-home anim-up d1">
-        <img src="assets/TC2_Left_View.jpg" alt="Tea's Court II"
+        <img src="assets/TC2_Left_View.jpg"
+             alt="Tea's Court II luxury apartment building Ikate Lekki Lagos — off-plan sale"
+             loading="lazy"
              onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=85'"/>
         <div class="proj-card-body-home">
           <span class="proj-card-tag-home active"><span class="pill-dot"></span>Rising Now</span>
@@ -297,7 +375,9 @@
 
       <!-- CARD 2: TC1 — assets/TC1_Front_View.jpg -->
       <a href="portfolio.html" class="proj-card-home anim-up d2">
-        <img src="assets/TC1_Front_View.jpg" alt="Tea's Court I"
+        <img src="assets/TC1_Front_View.jpg"
+             alt="Tea's Court I completed luxury residential development Lekki Lagos — sold out"
+             loading="lazy"
              onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80'"/>
         <div class="proj-card-body-home">
           <span class="proj-card-tag-home done">Completed — Sold Out</span>
@@ -308,8 +388,10 @@
 
       <!-- CARD 3: Kucaro — assets/kucaro_1.jpg -->
       <a href="portfolio.html" class="proj-card-home anim-up d3">
-        <img src="assets/kucaro_1.jpg" alt="Project Kucaro"
-             onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80'"/>
+        <img src="assets/kucaro_1.jpg"
+             alt="Project Kucaro luxury single-family residence Lagos Nigeria — Vistacraft Homes"
+             loading="lazy"
+             onerror="this.style.opacity='0'"/>
         <div class="proj-card-body-home">
           <span class="proj-card-tag-home done">Completed</span>
           <h3 class="proj-card-h-home">Project Kucaro</h3>
@@ -339,10 +421,14 @@
   <div class="about-grid mw">
     <div class="about-vis anim-left">
       <!-- IMAGE: assets/TC2_Right_View.jpg -->
-      <img class="about-main-img" src="assets/TC2_Right_View.jpg" alt="Tea's Court II Right View"
+      <img class="about-main-img" loading="lazy"
+           src="assets/TC2_Right_View.jpg"
+           alt="Tea's Court II luxury residential building right view — Vistacraft Homes Lekki Lagos"
            onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80'"/>
       <!-- IMAGE: assets/TC1_Right_View.jpg -->
-      <img class="about-acc-img" src="assets/TC1_Right_View.jpg" alt="Tea's Court I Completed"
+      <img class="about-acc-img" loading="lazy"
+           src="assets/TC1_Right_View.jpg"
+           alt="Tea's Court I completed and sold out — Vistacraft Homes Lekki Lagos"
            onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=500&q=80'"/>
       <div class="about-badge">
         <span class="ab-num">3</span>

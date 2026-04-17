@@ -3,18 +3,42 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contact — Vistacraft Homes</title>
-<meta name="description" content="Contact Vistacraft Homes — enquire about Tea's Court II. +234 704 558 5828 · contact@vistacrafthomes.com"/>
-<link rel="stylesheet" href="css/style.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<title>Buy Apartments in Ikate Lekki Lagos | Enquire — Vistacraft Homes</title>
+<meta name="description" content="Contact Vistacraft Homes to buy luxury 1, 2 & 3 bedroom apartments in Ikate Lekki Lagos. Call +234 704 558 5828 or enquire online about Tea's Court II from ₦150M."/>
+<link rel="canonical" href="https://vistacraft-homes.vercel.app/contact.html"/>
+<meta property="og:title" content="Enquire About Tea's Court II | Vistacraft Homes"/>
+<meta property="og:description" content="Buy luxury apartments in Ikate Lekki Lagos from ₦150M. Contact Vistacraft Homes today."/>
+<meta property="og:url" content="https://vistacraft-homes.vercel.app/contact.html"/>
+<meta property="og:image" content="https://vistacraft-homes.vercel.app/assets/TC2_Front_View.jpg"/>
+<meta property="og:type" content="website"/>
 <link rel="icon" type="image/png" href="assets/logo.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<!-- EmailJS SDK — sends form direct to your inbox, no backend needed -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // SETUP: go to emailjs.com → create account → create a service (Gmail works)
+  // → create an email template → paste your Service ID, Template ID, Public Key below
+  (function(){
+    // Replace 'YOUR_PUBLIC_KEY' with your EmailJS Public Key
+    emailjs.init({ publicKey: 'YOUR_PUBLIC_KEY' });
+  })();
+</script>
 </head>
 <body>
 <div class="curtain"></div>
 <div id="prog"></div>
 <div id="cdot"></div>
 <div id="cring"></div>
+<a href="https://wa.me/2347045585828?text=Hi%2C%20I%27m%20interested%20in%20Tea%27s%20Court%20II%20by%20Vistacraft%20Homes.%20Can%20you%20send%20me%20more%20details%3F"
+   id="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button id="back-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
 <!-- NAVBAR -->
 <nav id="nav">
@@ -51,28 +75,31 @@
       <h1 class="sh2">Begin Your<br><em>Legacy</em> Today</h1>
       <p class="slead" style="margin-bottom:2rem">Whether securing your dream home or a high-value investment, our team is ready to guide every step of the journey. Contact us about Tea's Court II.</p>
 
-      <form class="cf" onsubmit="handleMailtoSubmit(event)">
+      <!-- FORM — powered by EmailJS (sends directly to inbox, no backend needed)
+           Status: currently using mailto fallback until EmailJS keys are added.
+           To activate: replace YOUR_SERVICE_ID and YOUR_TEMPLATE_ID below. -->
+      <form class="cf" id="enquiryForm" onsubmit="sendEnquiry(event)">
         <div class="cfrow">
           <div class="cff">
             <label>First Name</label>
-            <input type="text" id="firstName" placeholder="Adebayo" required/>
+            <input type="text" id="firstName" name="first_name" placeholder="Adebayo" required/>
           </div>
           <div class="cff">
             <label>Last Name</label>
-            <input type="text" id="lastName" placeholder="Okafor" required/>
+            <input type="text" id="lastName" name="last_name" placeholder="Okafor" required/>
           </div>
         </div>
         <div class="cff">
           <label>Email Address</label>
-          <input type="email" id="emailAddress" placeholder="you@email.com" required/>
+          <input type="email" id="emailAddress" name="email" placeholder="you@email.com" required/>
         </div>
         <div class="cff">
           <label>Phone Number</label>
-          <input type="tel" id="phoneNumber" placeholder="+234 ···"/>
+          <input type="tel" id="phoneNumber" name="phone" placeholder="+234 ···"/>
         </div>
         <div class="cff">
           <label>Apartment Interest</label>
-          <select id="apartmentInterest">
+          <select id="apartmentInterest" name="apartment_interest">
             <option value="">Select unit type</option>
             <option>1 Bedroom + BQ (70sqm) — From ₦150M</option>
             <option>2 Bedroom + BQ (150sqm) — From ₦220M</option>
@@ -82,7 +109,7 @@
         </div>
         <div class="cff">
           <label>Preferred Payment Plan</label>
-          <select id="paymentPlan">
+          <select id="paymentPlan" name="payment_plan">
             <option value="">Select plan</option>
             <option>Outright Purchase</option>
             <option>6-Month Plan (50% min. deposit)</option>
@@ -91,14 +118,19 @@
         </div>
         <div class="cff">
           <label>Message</label>
-          <textarea id="message" placeholder="Tell us more about what you're looking for..."></textarea>
+          <textarea id="message" name="message" placeholder="Tell us more about what you're looking for..."></textarea>
         </div>
-        <button type="submit" class="cf-btn">
-          <i class="fa-solid fa-paper-plane"></i> Submit Enquiry
+        <button type="submit" class="cf-btn" id="submitBtn">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span id="submitTxt">Submit Enquiry</span>
         </button>
-        <div class="cf-ok" id="cfok">
-          <i class="fa-solid fa-circle-check" style="margin-right:.5rem"></i>
-          Opening your email application...
+        <div class="cf-ok" id="cfok" style="display:none;align-items:center;gap:.5rem;margin-top:.75rem;padding:.9rem 1.1rem;border:1px solid rgba(74,222,128,.25);border-radius:2px;background:rgba(74,222,128,.06);color:rgba(255,255,255,.7);font-size:.82rem">
+          <i class="fa-solid fa-circle-check" style="color:#4ADE80"></i>
+          Message sent. Our team will be in touch within 24 hours.
+        </div>
+        <div class="cf-err" id="cfErr" style="display:none;align-items:center;gap:.5rem;margin-top:.75rem;padding:.9rem 1.1rem;border:1px solid rgba(251,113,133,.22);border-radius:2px;background:rgba(251,113,133,.05);color:rgba(255,255,255,.6);font-size:.82rem">
+          <i class="fa-solid fa-triangle-exclamation" style="color:#FB7185"></i>
+          Something went wrong. Please <a href="https://wa.me/2347045585828" target="_blank" rel="noopener" style="color:#60A5FA;text-decoration:underline">WhatsApp us</a> directly.
         </div>
       </form>
     </div>
@@ -146,7 +178,7 @@
           <a href="teas-court-2.html#pricing" style="display:flex;align-items:center;gap:.65rem;font-size:.82rem;color:rgba(255,255,255,.65);transition:color .2s">
             <i class="fa-solid fa-tag" style="color:var(--sky);width:14px"></i> View Pricing
           </a>
-          <a href="teas-court-2.html#pricing" style="display:flex;align-items:center;gap:.65rem;font-size:.82rem;color:rgba(255,255,255,.65);transition:color .2s">
+          <a href="teas-court-2.html#floor-plans" style="display:flex;align-items:center;gap:.65rem;font-size:.82rem;color:rgba(255,255,255,.65);transition:color .2s">
             <i class="fa-solid fa-vector-square" style="color:var(--sky);width:14px"></i> View Floor Plans
           </a>
           <a href="portfolio.html" style="display:flex;align-items:center;gap:.65rem;font-size:.82rem;color:rgba(255,255,255,.65);transition:color .2s">

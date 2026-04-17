@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage — highest priority, changes frequently as TC2 progresses -->
+  <url>
+    <loc>https://vistacraft-homes.vercel.app/</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Tea's Court II — active sales page, most business-critical -->
+  <url>
+    <loc>https://vistacraft-homes.vercel.app/teas-court-2.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Portfolio — shows all projects, good for organic discovery -->
+  <url>
+    <loc>https://vistacraft-homes.vercel.app/portfolio.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About — trust signal, stable content -->
+  <url>
+    <loc>https://vistacraft-homes.vercel.app/about.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Contact / Enquire -->
+  <url>
+    <loc>https://vistacraft-homes.vercel.app/contact.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

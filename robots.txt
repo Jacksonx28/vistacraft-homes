@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Point Google to the sitemap
+Sitemap: https://vistacraft-homes.vercel.app/sitemap.xml

@@ -333,3 +333,65 @@ section{padding:7rem 3.5rem}
 
 /* ── SHARED JS CURSOR + SCROLL ── */
 /* (see shared.js) */
+
+/* ══════════════════════════════════════════
+   STICKY WHATSAPP BUTTON
+   Bottom-right, above any footer.
+   Green circle with WhatsApp icon.
+   On mobile sits above the back-to-top btn.
+══════════════════════════════════════════ */
+#whatsapp-float{
+  position:fixed;
+  bottom:5rem;
+  right:1.8rem;
+  z-index:600;
+  width:50px;height:50px;
+  border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;
+  font-size:1.35rem;
+  box-shadow:0 4px 18px rgba(37,211,102,.4);
+  transition:transform .25s,box-shadow .25s;
+}
+#whatsapp-float:hover{
+  transform:translateY(-3px) scale(1.06);
+  box-shadow:0 8px 28px rgba(37,211,102,.5);
+}
+#whatsapp-float i{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:100%;
+}
+@media(max-width:768px){
+  #whatsapp-float{bottom:4.5rem;right:1.2rem;width:46px;height:46px;font-size:1.2rem}
+}
+
+/* ══════════════════════════════════════════
+   BACK TO TOP BUTTON
+   Appears after 400px scroll.
+   Small navy circle, white arrow.
+══════════════════════════════════════════ */
+#back-top{
+  position:fixed;
+  bottom:1.8rem;right:1.8rem;
+  z-index:600;
+  width:42px;height:42px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(7,24,48,.8);
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.55);
+  font-size:.72rem;
+  opacity:0;transform:translateY(10px);
+  pointer-events:none;
+  transition:opacity .35s,transform .35s,border-color .25s,color .25s;
+}
+#back-top.visible{
+  opacity:1;transform:translateY(0);
+  pointer-events:auto;
+}
+#back-top:hover{border-color:rgba(255,255,255,.4);color:var(--wh)}
+@media(max-width:768px){
+  #back-top{bottom:1.2rem;right:1.2rem;width:38px;height:38px}
+}
